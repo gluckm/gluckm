@@ -1,0 +1,50 @@
+---
+title: Parametric Curves
+author: Mathew Gluck
+date: '2021-04-30'
+slug: parametric-curves
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-04-30T18:28:09-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+# Overview 
+A parametric curve is a curve in `$\mathbb R^2$` \$\mathbb R^2\$ together with infomration regarding how the curve is traversed. 
+
+
+
+```{definition}
+A _planar parametric curve_ is a function defined on some subinterval $I\subset \mathbb R^2$ taking values in $\mathbb R^2$. The independent variable of a parametric curve is called the parameter. 
+```
+
+Typically, the output of a parametric curve corresponding to input \$t\in I\$ is denoted by 
+\$\$
+    (x(t), y(t)). 
+\$\$
+\\begin{equation}
+  \sin^2t + y^2 = 1
+\\end{equation}
+
+
+THis is a `.Rmarkdown` file. Outside of a fenced-in environment, I can not render math without escaping characters (use `/` to escape). For example `$\sin^2 \theta + \cos^2\theta = 1$` renders as $\sin^2 \theta + \cos^2\theta = 1$ (both look like code), whereas `\$\sin^2 \theta + \cos^2\theta = 1\$` renders as \$\sin^2 \theta + \cos^2\theta = 1\$. 
+
+
+```{example}
+Perhaps the most familiar example of a parametric curve is the standard parameterization of the unit circle: 
+\begin{equation}
+\label{eq:binom}
+    (\cos t, \sin t) \qquad \text{ for } t\in [0, 2\pi)   
+\end{equation}
+This parameterization starts (when $t = 0$) at the point $(0, 1)$ and traverses the unit circle in the counter-clockwise direction. The circle is traversed exactly once and with constant speed. 
+```
+
+
+
