@@ -1,0 +1,12 @@
+---
+date: "2021-05-09"
+linkTitle: Parametric Equations and Polar Coordinates
+summary: parametric equations and polar coordinates
+title: "Parametric equations and polar coordinates"
+type: book
+weight: 600
+---
+
+## Sequences and series
+
+First we will discuss basic notions regarding parametric curves and polar coordinates

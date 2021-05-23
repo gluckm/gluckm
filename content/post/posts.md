@@ -3,8 +3,9 @@
 # Documentation: https://wowchemy.com/docs/page-builder/
 widget: pages
 
+
 # Toggle active status on or off. 
-active: false
+active: true
 
 # This file represents a page section.
 headless: true

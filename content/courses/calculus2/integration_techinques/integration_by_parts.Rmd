@@ -1,0 +1,37 @@
+---
+date: "2021-05-09"
+title: Integration by parts
+type: book
+weight: 210
+---
+
+## Some stuff about integration by parts.
+
+Recall the product rule for differentiation which says that if $u$ and $v$ are differentiable functions of $x$ then 
+\begin{equation*}
+    (uv)'
+    = 
+    uv' + vu',  
+\end{equation*}
+where the notation $u'$ is used for derivative of $u$ with respect to $x$. Integration of both sides of this equation with respect to $\mathrm d x$ and in view of the fact that the differentials of $u$ and $v$ are 
+\begin{equation*}
+    \mathrm d u  = u' \; \mathrm d x
+    \qquad\text{ and } \qquad
+    \mathrm d v  = v' \; \mathrm d x
+\end{equation*}
+respectively, we obtain 
+\begin{equation*}
+\begin{split}
+    uv
+    & = \int (uv)'\; \mathrm d x\\
+    & = \int u\;  v' \mathrm d x  + \int v\; u'\mathrm d x\\
+    & = \int u\; \mathrm d v + \int v \; \mathrm d u
+\end{split}
+\end{equation*}
+Upon rearranging we obtain 
+\begin{equation*}
+    \int u \; \mathrm d v
+    =
+    uv - \int v\; \mathrm d u
+\end{equation*}
+

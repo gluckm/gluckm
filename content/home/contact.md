@@ -3,6 +3,9 @@
 # Documentation: https://sourcethemes.com/academic/docs/page-builder/
 widget: contact
 
+# Toggle active status on or off. 
+active: false 
+
 # This file represents a page section.
 headless: true
 

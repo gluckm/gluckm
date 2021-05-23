@@ -1,0 +1,187 @@
+---
+date: "2021-05-22"
+title: Areas Between Curves
+type: book
+weight: 210
+---
+In this note I will overview the derivation of the formula for computing the area of a region bounded the graphs of two continuous functions; it comes from a simple Riemann sum argument. I will then discuss the most basic application of the theorem. Finally, I will discuss three potential obstacles to application of the theorem and how to overcome each. The computations are kept simple in order to make the main ideas as transparent as possible. In practice, a second-semester calculus student would be expected to apply these ideas in a more nuanced setting that is discussed here. 
+
+## The theorem and basic application
+
+```{theorem, label = "area"}
+If $f$ and $g$ are continuous functions on the inverval $[a, b]$ and if $f(x)\geq g(x)$ for all $x\in [a,b]$ then the area $A$ of the region bounded by the graphs of $f$ and $g$ and the vertical lines $x = a$ and $x= b$ is 
+\begin{equation*}
+    A = \int_a^b(f(x) - g(x))\; \mathrm d x. 
+\end{equation*}
+```
+
+As far as applications of this theorem, there are a few techniques that one must be aware of. Let's start with the most basic example. 
+
+```{example, label = "area1"}
+Compute the area of the region bounded by the graphs of $f(x) = 3 - x^2$ and $g(x) = x^2 - 5$ and the vertical lines $x = 0$ and $x = 1$. 
+
+*Solution.* Both of the given functions are polynomials and are therefore continuous for all $x\in \mathbb R$. In particular, they are continuous for all $x\in [0, 1]$. Thus, once we figure out which of $f$ or $g$ (if any) is larger on the interval $[0, 1]$, we can apply Theorem \@ref(thm:area) to recover the desired area. 
+
+
+Since the graphs of both of $f$ and $g$ can be sketched using precalculus-level techniques^[for example by applying suitable transformations to the curve $y = x^2$.], we can determine which of $f$ or $g$ (if any) is larger over the interval $[0,1]$ by sketching their graphs. The graph of $f$ is a parabola that opens downward with vertex at $(0, 3)$ and the graph of $g$ is a parabola that opens upward with vertex at $(0, -5)$. In particular, the inequality $f(x)\geq g(x)$ is satsified for all $x\in [0, 1]$, see the following figure:
+    
+<figure>
+<img 
+    src ="/img/parabolas_1.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>The inequality $f(x) \geq g(x)$ holds for all $x\in [0, 1]$.</figcaption>
+</figure>
+    
+Now that all of the relevant hypotheses have been verified, we can recover the area $A$ by applying Theorem \@ref(thm:area) and then carrying out the simplifying computations as follows: 
+\begin{equation*}
+\begin{split}
+    A 
+    & = \int_0^1(3 - x^2 - (x^2 - 5))\; \mathrm d x\\
+    & = \int_0^1(- 2x^2 + 8)\; \mathrm d x\\
+    & = -2\int_0^1 x^2 \; \mathrm d x + 8\int_0^1\; \mathrm d x\\
+    & = - \frac{2x^3}{3}\bigg|_0^1 + 8 x\bigg|_0^1\\
+    & = -\frac 23(1^3 - 0^3) + 8(1 - 0)\\
+    & = \frac{22}{3}. 
+\end{split}
+\end{equation*}
+```
+
+## Determining the integration bounds
+In Example \@ref(exm:area1), the interval over which the integration was to take place was given. In some cases, we may need to determine, based on the wording of the problem and an elementary computation, what the bounds of integration should be. 
+
+```{example}
+Compute the area of the region in the right half of the $(x,y)$-plane that is bounded by the graphs of $f(x) = 3 - x^2$ and $g(x) = x^2 - 5$. 
+
+*Solution.* As in Example \@ref(exm:area1), $f$ and $g$ are polynomials and are therefore continuous for all $x\in \mathbb R$. In particular, once we determine the interval over which we want to apply Theorem \@ref(thm:area), we are guaranteed that both of $f$ and $g$ will be continuous over that interval. The phrase "right half of the $(x,y)$-plane" provided in the problem statement indicates that the interval will be some subinterval of $[0,\infty)$. Since the graphs of $f$ and $g$ are obtainable via precalculus-level techniques, we can determine the desired subinterval by making a sketch. The graphs of $f$ and $g$ can be obtained as described in Example \@ref(exm:area1), and doing so yields the following figure, where the region whose area we wish to compute has also been indicated: 
+
+<figure>
+<img 
+    src ="/img/parabolas_2.1_scaled.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>The interval over which we wish to apply Theorem \@ref(thm:area) is $[0, b]$. We will need to do a short computation to determine the value of $b$.</figcaption>
+</figure>
+
+The figure indicates that we will need to apply Theorem \@ref(thm:area) over the interval $[0, b]$, where $b$ is the $x$-coordinate of the intersection of the graphs of $f$ and $g$. In particular, the value of $b$ can be determined by selecting the positive solution to the equation $f(x) = g(x)$ as follows: 
+
+\begin{equation*}
+\begin{split}
+    f(x) = g(x) 
+    & \Leftrightarrow 3 - x^2 = x^2 - 5\\
+    & \Leftrightarrow 0 = 2x^2 - 8\\
+    & \Leftrightarrow 0 = 2(x - 2)(x + 2)\\
+    & \Leftrightarrow x\in \{-2, 2\}.
+\end{split}
+\end{equation*}
+
+Evidently $b = 2$ is the solution we seek. Arguing as in Example \@ref(exm:area1) we find that $f(x) \geq g(x)$ for all $x\in [0, 2]$. Now that all hypotheses of Theorem \@ref(thm:area) have been verified, we obtain the area $A$ of the region described in the problem statement by applying said theorem and performing elementary computations as follows: 
+\begin{equation*}
+\begin{split}
+    A 
+    & = \int_0^2( 3 - x^2 - (x^2 - 5))\; \mathrm d x\\
+    & = -2\int_0^2x^2\;\mathrm d x + 8\int_0^2 \;\mathrm d x\\
+    & = -\frac 23(2^3 - 0^3) + 8(2 - 0)\\
+    & = \frac{32}{3}. 
+\end{split}
+\end{equation*}
+```
+
+## The inequlity $f(x)\geq g(x)$ does not apply over the entire interval
+In some instances, the inequality $f(x)\geq g(x)$ simply does not hold for all $x\in [a,b]$, no matter how we label $f$ and $g$. 
+
+````{example}
+Compute the area of the region that lies between the graphs of $f(x) = 3 - x^3$ and $g(x) = x^2 - 5$ and between the vertical lines $x= 0$ and $x= 3$. 
+
+*Solution.*
+In this case, the interval under consideration is $[0, 3]$, and neither of the inequalities $f(x)\geq g(x)$ or $g(x)\geq f(x)$ hold *for all* $x$ in this interval. In particular the one of these two inequalities that holds depends on the value of $x$. The following figure illustrates the situation:
+
+<figure>
+<img 
+    src ="/img/parabolas_3_scaled.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>Neither of the inequlities $f(x)\geq g(x)$ or $g(x)\geq f(x)$ hold for all $x\in [0, 3]$. Indeed, if $x\in [0, 2]$ then $f(x)\geq g(x)$, but if $x\in [2, 3]$ then $g(x)\geq f(x)$. </figcaption>
+</figure>
+
+To overcome this obstacle, we split the interval $[0,3]$ into two subintervals $[0, 2]$ and $[2, 3]$. These particular subintervals are chosen because on each of these subintervals, we can identify which function (among $f$ and $g$) is larger and which function is smaller over the entire subinterval. Due to the additivity of the definite integral^[Recall that *additivity* of the the definite integral means that $\int_a^b f(x)\; \mathrm d x = \int_a^c f(x)\; \mathrm d x + \int_c^b f(x)\; \mathrm d x$ whenever $f$ is an integrable function over an interval containing all of $a$, $b$ and $c$.]. We may recover the area $A$ of the region described in the problem statement by applying Theorem \@ref(thm:area) separately over the intervals $[0, 2]$ and $[2,3]$ and then adding the results. In symbols: 
+\begin{equation*}
+\begin{split}
+    A 
+    & = \int_0^2(f(x) - g(x))\; \mathrm d x + \int_2^3(g(x) - f(x))\; \mathrm d x\\
+    & = \int_0^2(3 - x^2 - (x^2 - 5))\; \mathrm d x + \int_2^3(x^2 - 5 - (3 -x^2))\; \mathrm d x\\
+    & = 2\int_0^2(-x^2 + 4)\; \mathrm d x + 2\int_2^3(x^2 - 4)\; \mathrm d x\\
+    & = 2\left(-\frac{x^3}{3} + 4x\right)\bigg|_{0}^2 + 2\left(\frac{x^3}{3} - 4 x\right)\bigg|_2^3\\
+    & = \frac{46}{3}. 
+\end{split}
+\end{equation*}
+````
+
+## One of the bounding curves changes
+When it applies, the basic content of Theorem \@ref(thm:area) is to subtract the smaller function from the larger function and then integrate over the interval of interest. In some cases the larger function or the smaller function (or both) may depend on $x$. In these cases the basic strategy is to split the interval under consideration into subintervals where, one each subinterval, there is exactly one larger function and exactly one smaller function. We apply Theorem \@ref(thm:area) over each subinterval and then sum the results. 
+
+```{example}
+Compute the area of the region in the $(x,y)$-plane that is bounded by the the $y$-axis and the graphs of the functions $f(x) = 3 - x^2$, $g(x) = x^2 - 5$ and $h(x) = x + 1$. 
+
+*Solution.* It is useful to make a quick sketch of the given curves and shade in the region whose area we want to compute. Note that there are two bounded regions in the $(x,y)$-plane whose boundary intersects the graphs of all three of the given functions, but only one of these regions has the $y$-axis as part of its boundary. 
+
+<figure>
+<img 
+    src ="/img/parabolas_4_scaled.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>If $x\in [0, x_0]$ then the graph of $h(x)$ is the upper bounding curve, but if $x\in [x_0, 2]$ then the graph of $f(x)$ is the upper bounding curve.</figcaption>
+</figure>
+        
+Based on the sketch, we find that there is some number $x_0$ on the $x$-axis for which the upper bounding curve is $h(x) = x+ 1$ when $x\in [0, x_0]$ and the upper bounding curve is $f(x) = 3 - x^2$ when $x\in [x_0, 2]$. Thus, the upper bounding curve has "changed" at $x = x_0$. Our basic strategy for computing the area $A$ of the region under consideration is to 
+
+* apply Theorem \@ref(thm:area) over the interval $[0, x_0]$ with upper function $h(x)$ and lower function $g(x)$, 
+* apply Theorem \@ref(thm:area) over the interval $[x_0, 2]$ with upper function $f(x)$ and lower function $g(x)$, 
+* add the results of the previous two steps. 
+
+In symbols, this strategy is to compute
+\begin{equation}
+    A 
+    = \int_0^{x_0}(h(x) - g(x))\; \mathrm d x
+    + \int_{x_0}^2(f(x) - g(x))\; \mathrm d x. 
+(\#eq:strategy)
+\end{equation}
+
+At this moment, the only barrier between our current standing and being able to apply this strategy is that we do not know the value of $x_0$. However, observing that $x_0$ is the $x$-coordinate of the intersection of the curves $y = x + 1$ and $y = 3- x^2$, we easily overcome this barrier by computing as follows: 
+\begin{equation*}
+\begin{split}
+    3 - x^2 = x + 1
+    & \Leftrightarrow 0 = x^2 + x - 2\\
+    & \Leftrightarrow 0 = (x - 1)(x + 2)\\
+    & \Leftrightarrow x \in \{1, -2\}.
+\end{split}
+\end{equation*}
+Evidently $x_0 = 1$ is the value we seek. 
+
+Finally, we execute our strategy by applying equation \@ref(eq:strategy) with $x_0 = 1$ and the given expressions for $f$, $g$ and $h$ and then performing routine computations as follows:
+\begin{equation*}
+\begin{split}
+    A 
+    & = \int_0^{1}(x + 1 - (x^2 - 5))\; \mathrm d x
+    + \int_{1}^2(3 - x^2 - (x^2 - 5))\; \mathrm d x\\
+    & = \int_0^1(-x^2 + x + 6)\; \mathrm d x
+    + \int_1^2(-2x^2+8)\; \mathrm d x\\
+    & = \left(-\frac{x^3}{3} + \frac{x^2}{2} + 6\right)\bigg|_0^1
+    + \left(-\frac{2x^3}{3} + 8x \right)\bigg|_1^2\\
+    & = \frac{19}{2}.
+\end{split}
+\end{equation*}
+```
+
+
+
+
+
+
+
+
+

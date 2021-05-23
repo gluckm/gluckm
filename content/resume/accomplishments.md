@@ -4,7 +4,7 @@
 widget: accomplishments
 
 # Toggle active status on or off. 
-active: false 
+active: true
 
 # This file represents a page section.
 headless: true

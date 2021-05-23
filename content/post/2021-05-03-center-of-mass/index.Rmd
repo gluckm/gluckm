@@ -46,16 +46,6 @@ This is a tikz picture. Unfortunately, the output quality looks poor.
 \end{tikzpicture}
 ```
 
-stuff above
-\begin{tikzpicture}[scale=.7]
-    \draw [fill=gray!10,very thick] (0,-1) rectangle (5,1);
-    \draw [thick] (5, 0) -- (8,0);
-    \draw [thick] (-3, 0) -- (0, 0); 
-    \fill (5, -1) node [below]{$\scriptstyle(5, -1)$} circle (2pt);
-    \fill (5, 0) circle (2pt); 
-    \node [below, align=center] at (0,-1) {$\scriptstyle(0, -1)$};
-\end{tikzpicture}
-and below
 Run `pdflatex box.tex` and then run `pdf2svg box.pdf box.svg` to converg to `.svg` format. Manually include the `.svg` file. using 
 
 ```{r, echo=TRUE, fig.align="center", fig.cap="A nice image."}

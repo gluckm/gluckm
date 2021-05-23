@@ -1,0 +1,21 @@
+---
+date: "2021-05-09"
+linkTitle: Power Series
+summary: Power series
+title: "Power Series"
+type: book
+weight: 500
+---
+
+## Power series
+
+Having discussed sequences and series of numbers, we will take a conceptual jump to the discussion of sequences and series of functions. However, we will only have a tase. This is power series. There are other common series of functions that we will not explore in this course
+
+## Units covered in this course
+
+* Test for Divergence
+* Integral Test
+* Comparison Tests
+* Ratio and Root Tests
+
+{{< list_children >}}

@@ -1,0 +1,18 @@
+---
+date: "2021-05-09"
+linkTitle: Applications of Integration
+summary: An exploration of some basic geometric and physical applications of integraion.
+title: "Applications of Integration"
+type: book
+weight: 100
+---
+
+We will explore some of the basic applications of integration. Applications will be both geometrically and physically inspired. 
+
+
+```{r, fig.align="center", fig.cap="A nice image."}
+knitr::include_graphics("images/parabolas_1.svg")
+```
+
+Another image: 
+![parabolas_1](images/parabolas_1.svg){ height=100% }

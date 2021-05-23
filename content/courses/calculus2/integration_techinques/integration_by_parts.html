@@ -1,0 +1,39 @@
+---
+date: "2021-05-09"
+title: Integration by parts
+type: book
+weight: 210
+---
+
+
+
+<div id="some-stuff-about-integration-by-parts." class="section level2">
+<h2>Some stuff about integration by parts.</h2>
+<p>Recall the product rule for differentiation which says that if <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are differentiable functions of <span class="math inline">\(x\)</span> then
+<span class="math display">\[\begin{equation*}
+    (uv)&#39;
+    = 
+    uv&#39; + vu&#39;,  
+\end{equation*}\]</span>
+where the notation <span class="math inline">\(u&#39;\)</span> is used for derivative of <span class="math inline">\(u\)</span> with respect to <span class="math inline">\(x\)</span>. Integration of both sides of this equation with respect to <span class="math inline">\(\mathrm d x\)</span> and in view of the fact that the differentials of <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> are
+<span class="math display">\[\begin{equation*}
+    \mathrm d u  = u&#39; \; \mathrm d x
+    \qquad\text{ and } \qquad
+    \mathrm d v  = v&#39; \; \mathrm d x
+\end{equation*}\]</span>
+respectively, we obtain
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    uv
+    &amp; = \int (uv)&#39;\; \mathrm d x\\
+    &amp; = \int u\;  v&#39; \mathrm d x  + \int v\; u&#39;\mathrm d x\\
+    &amp; = \int u\; \mathrm d v + \int v \; \mathrm d u
+\end{split}
+\end{equation*}\]</span>
+Upon rearranging we obtain
+<span class="math display">\[\begin{equation*}
+    \int u \; \mathrm d v
+    =
+    uv - \int v\; \mathrm d u
+\end{equation*}\]</span></p>
+</div>

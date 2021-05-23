@@ -3,9 +3,6 @@
 # Documentation: https://wowchemy.com/docs/page-builder/
 widget: experience
 
-# Toggle active status on or off. 
-active: false 
-
 # This file represents a page section.
 headless: true
 

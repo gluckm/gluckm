@@ -7,8 +7,8 @@ main:
   - name: About
     url: '#about'
     weight: 10
-  - name: Posts
-    url: '#posts'
+  - name: Teaching
+    url: courses/
     weight: 20
   - name: Projects
     url: '#projects'
@@ -16,12 +16,15 @@ main:
   - name: Talks
     url: '#talks'
     weight: 40
-  - name: Publications
-    url: '#featured'
+  - name: Research
+    url: '/research/#publications'
     weight: 50
-  - name: Courses
-    url: courses/
+  - name: Posts
+    url: '/post/#posts'
     weight: 60
-  - name: Contact
-    url: '#contact'
-    weight: 70
+  - name: CV
+    url: '/resume/#resume'
+    weight: 65
+#  - name: Contact
+#    url: '#contact'
+#    weight: 70
