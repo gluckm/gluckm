@@ -27,7 +27,7 @@ Since the graphs of both of $f$ and $g$ can be sketched using precalculus-level 
     
 <figure>
 <img 
-    src ="/img/parabolas_1.svg"
+    src ="/img/calculus_2/areas_between_curves/parabolas_1.svg"
     width="60%" 
     height="auto">
 </img>
@@ -58,7 +58,7 @@ Compute the area of the region in the right half of the $(x,y)$-plane that is bo
 
 <figure>
 <img 
-    src ="/img/parabolas_2.1_scaled.svg"
+    src ="/img/calculus_2/areas_between_curves/parabolas_2.svg"
     width="60%" 
     height="auto">
 </img>
@@ -100,7 +100,7 @@ In this case, the interval under consideration is $[0, 3]$, and neither of the i
 
 <figure>
 <img 
-    src ="/img/parabolas_3_scaled.svg"
+    src ="/img/calculus_2/areas_between_curves/parabolas_3.svg"
     width="60%" 
     height="auto">
 </img>
@@ -130,7 +130,7 @@ Compute the area of the region in the $(x,y)$-plane that is bounded by the the $
 
 <figure>
 <img 
-    src ="/img/parabolas_4_scaled.svg"
+    src ="/img/calculus_2/areas_between_curves/parabolas_4.svg"
     width="60%" 
     height="auto">
 </img>
