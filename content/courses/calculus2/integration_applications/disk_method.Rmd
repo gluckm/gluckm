@@ -1,0 +1,104 @@
+---
+date: "2021-06-09"
+title: Volumes of Solids of Revolution- The Disk Method
+type: book
+weight: 220
+---
+In this note I will overview the derivation of the formula for using the disk/ washer method for computing the volume of a solid of revolution. This is a special case of the more general method of computing volumes of solids by slicing. 
+
+I will discuss three potential obstacles to application of the theorem and how to overcome each. The computations are kept simple in order to make the main ideas as transparent as possible. In practice, a second-semester calculus student would be expected to apply these ideas in a more nuanced setting that is discussed here. 
+
+## The theorem and its derivation
+Let $f:[a, b]\to [0, \infty)$ be a continuous function and let $R$ denote the region in the $(x,y)$-plane bounded by the $x$-axis, the curve $y = f(x)$ and the vertical lines $x = a$ and $x = b$. 
+
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/generating_region.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>The region that will be used to generate a solid of revolution</figcaption>
+</figure>
+
+Revolving $R$ about the $x$ axis generates a solid (appropriately called a *solid of revolution*). 
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/surf_revolution.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>The solid of revolution obtained by revolving region $R$ about the $x$-axis</figcaption>
+</figure>
+
+We are interested in deriving a formula for computing the volume of the solid. To do this we partition the interval $[a,b]$ into $n$ subintervals, each having width $\Delta x = (b - a)/n$. For each $i = 1, 2, \ldots, n$, we choose a representative point $x_i^*$ in the $i^{\text{th}}$ subinterval and then approximate the the region below the graph of $f$ and above the $i^{\text{th}}$ subinterval by a rectangle of width $\Delta x$ and height $f(x_i^*)$. 
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/ith_rectangle.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>Approximating the region under the graph of $f$ over the $i^{\text{th}}$ subinterval with a rectangle.</figcaption>
+</figure>
+
+Revolving this rectangle about the $x$-axis gives a cylinder of thickness $\Delta x$ and of radius $f(x_i^*)$. The volume of this cylinder is 
+\begin{equation*}
+    \Delta V_i = \pi f(x_i^*)^2 \Delta x
+\end{equation*}
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/ith_cylinder.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>Approximating the region under the graph of $f$ over the $i^{\text{th}}$ subinterval with a rectangle.</figcaption>
+</figure>
+When all such cylinders are considered, we obtain a solid whose volume is approximately equal to the volume of the solid we wish to compute
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/disk_riemann_approx.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>Approximating the region under the graph of $f$ over the $i^{\text{th}}$ subinterval with a rectangle.</figcaption>
+</figure>
+Summing the volumes of the cylinders gives an approximation for the volume of the solid: 
+\begin{equation*}
+    V\approx \sum_{i = 1}^n \Delta V_i 
+    = \sum_{i = 1}^n \pi f(x_i^*)^2 \Delta x. 
+\end{equation*}
+Finally, because $f$ is assumed continuous, we can recover the exact volume of the solid of revolution by allowing the number of rectangles $n$ to tend to infinity: 
+\begin{equation*}
+\begin{split}
+    V 
+    & = \lim_{n\to\infty}\sum_{i = 1}^n \pi f(x_i^*)^2 \Delta x\\
+    & = \pi \int_a^b f(x)^2 \; \mathrm d x. 
+\end{split}
+\end{equation*}
+This provides the hueristic for the proof of the following theorem: 
+
+```{theorem, label = "diskmeth"}
+Let $f$ be a continuous, non negative function on the interval $a\leq x\leq b$ and let $R$ denote the region in the $(x,y)$-plane that lies below the curve $y = f(x)$, above the $x$-axis and between the vertical lines $x = a$ and $x = b$. The volume of the solid obtained by revolving $R$ about the $x$-axis is 
+\begin{equation*}
+    V = \pi\int_a^b f(x)^2 \; \mathrm d x. 
+\end{equation*}
+```
+
+## A basic application of Theorem \@ref(thm:diskmeth)
+
+```{example, label = "area1"}
+Let $R$ be the region in the $(x,y)$-plane that lies below the graph of $f(x) = \sqrt x + 1$, above the $x$-axis and between the vertical lines $x =0$ and $x = 1$. Compute the volume of the solid obtained by revolving $R$ about the $x$-axis. 
+
+*Solution.* We know from first semester calculus that the square root function is continuous on $[0, 1]$^[Continuity is interpreted in the appropriate one-sided sense at $x = 0$.] and that every constant function is continuous. Since $f$ is the sum of two functions, both of which are continuous on $[0,1]$, $f$ is also continuous on $[0, 1]$. Having verified the hypotheses of Theorem \@ref(thm:diskmeth), we may apply the theorem to obtain 
+\begin{equation*}
+\begin{split}
+    V 
+    & = \pi\int_0^1 (\sqrt x + 1)^2\; \mathrm d x\\
+    & = \pi\int_0^1(x + 2\sqrt x + 1)\; \mathrm d x\\
+    & = \pi\left(\frac{x^2}{2} + \frac 4 3 x^{3/2} + x\right)\bigg|_0^1\\
+    & = \frac{17\pi}6. 
+\end{split}
+\end{equation*}
+```
+
+
+

@@ -1,0 +1,169 @@
+---
+title: Condition of a Problem
+author: Mathew Gluck
+date: '2021-05-30'
+slug: condition-of-a-problem
+draft: true
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2021-05-30T20:42:17-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+bibliography: [../references.bib]
+link-citations: true
+---
+
+
+
+<p>Will discuss the condition of a problem. Model a problem as a function <span class="math inline">\(f:\mathbb R^n\to \mathbb R^m\)</span>. Generally, the condition of a problem is (a linear approximation to) the amount by which the relative change in the output changes in response to a relative change in the input. Typically, we say the conditin of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>, so in the event that <span class="math inline">\(x\)</span> or <span class="math inline">\(y = f(x)\)</span> is zero, some modifications are made as the relative change is not defined. We assume throughout that <span class="math inline">\(f\)</span> is differentiable.</p>
+<div id="warm-up" class="section level1">
+<h1>Warm up</h1>
+<p>We consider the case <span class="math inline">\(m = n= 1\)</span> and hence <span class="math inline">\(f:\mathbb R\to \mathbb R\)</span>. Suppose the input <span class="math inline">\(x\in \mathbb R\setminus\{0\}\)</span> corresponds to output <span class="math inline">\(y = f(x) \in \mathbb R\setminus\{0\}\)</span>. Suppose <span class="math inline">\(x\)</span> is perturbed by <span class="math inline">\(h\in \mathbb R\setminus\{0\}\)</span>. The relative change in the output is
+<span class="math display">\[\begin{equation*}
+    \frac{f(x + h) - f(x)}{f(x)}
+    \approx \frac{f&#39;(x)h}{f(x)}
+    = \frac{x f&#39;(x)}{f(x)}\cdot \frac{h}{x}, 
+    \qquad x\neq 0, f(x)\neq 0. 
+\end{equation*}\]</span>
+Thus, the relative change in the output is magnified by a factor of <span class="math inline">\(x f&#39;(x)/f(x)\)</span>. We define the <em>condition number of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span></em> by
+<span class="math display">\[\begin{equation*}
+    (\text{cond }f)(x) = \left| \frac{x f&#39;(x)}{f(x)}\right|. 
+\end{equation*}\]</span>
+Some mofifications need to be made if one of <span class="math inline">\(x\)</span> or <span class="math inline">\(f(x)\)</span> is zero. In short, the modifications are to use the aboslute error whenever the relative error is not defined. For example, if <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(f(x)\neq 0\)</span> then we use the absolute perturbation <span class="math inline">\(h\)</span> in place of the relative perturbation <span class="math inline">\(h/x\)</span> to obtain
+<span class="math display">\[\begin{equation*}
+    (\text{cond }f)(0) = \left| \frac{f&#39;(x)}{f(x)}\right|. 
+\end{equation*}\]</span>
+Similarly,
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    (\text{cond }f)(x) 
+        &amp; = \left| xf&#39;(x)\right| \qquad x\neq 0, f(x) = 0\\
+    (\text{cond }f)(0)
+        &amp; = \left| f&#39;(0)\right| \qquad x= 0, f(x) = 0\\
+\end{split}
+\end{equation*}\]</span></p>
+</div>
+<div id="general-case" class="section level1">
+<h1>General case</h1>
+<p>In general consider a differentiable function <span class="math inline">\(f:\mathbb R^n\to \mathbb R^m\)</span> with coordinate functions <span class="math inline">\(f_i:\mathbb R^n\to \mathbb R\)</span>. The relative change in the output of <span class="math inline">\(f_i\)</span> in response to a perturbation <span class="math inline">\(h\)</span> in the <span class="math inline">\(j^{\text{th}}\)</span> coordinate is
+<span class="math display">\[\begin{equation*}
+    \frac{f_i(x + he_j) - f(x)}{f_i(x)}
+    \approx \frac{h}{y_i}\frac{\partial f_i}{\partial x_j}(x)
+    = \frac{x_j}{y_i}\frac{\partial f_i}{\partial x_j}(x) \cdot \frac{h}{x_j}
+\end{equation*}\]</span>
+where <span class="math inline">\(e_j\)</span> is the <span class="math inline">\(j^{\text{th}}\)</span> standard basis vector in <span class="math inline">\(\mathbb R^n\)</span>. We define
+<span class="math display" id="eq:condition">\[\begin{equation}
+    (\text{cond}_{ij} f)(x)
+    = \left| \frac{x_j}{y_i}\frac{\partial f_i}{\partial x_j}(x)\right|
+    = :\gamma_{ij}(x)
+\tag{1}
+\end{equation}\]</span>
+with the appropriate modifications in the case that either of <span class="math inline">\(f_i(x)\)</span> or <span class="math inline">\(x_j\)</span> is zero. Arranging these numbers into a matrix <span class="math inline">\(\Gamma(x) = (\gamma_{ij}(x))\)</span> we define the condition number of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span> (relative to the norm <span class="math inline">\(\|\cdot\|\)</span>) to be
+<span class="math display">\[\begin{equation*}
+    (\text{cond }f)(x) = \|\Gamma(x)\|. 
+\end{equation*}\]</span></p>
+<div id="a-less-refined-but-often-used-approach" class="section level2">
+<h2>A Less Refined (but Often Used) Approach</h2>
+Denote the purturbation in the input <span class="math inline">\(x\)</span> by
+<span class="math display">\[\begin{equation*}
+    \Delta x = (\Delta x_1, \ldots, \Delta x_n)
+\end{equation*}\]</span>
+and the relative perturbation as <span class="math inline">\(\|\Delta x\|/\|x\|\)</span>. In this case, the relative change in the output in response to the perturbation <span class="math inline">\(\Delta x\)</span> is
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    \frac{\|f(x + \Delta x) - f(x)\|}{\|f(x)\|}
+    &amp; \approx \frac{\|J_f(x) \Delta x\|}{\|f(x)\|}\\
+    &amp; \leq \frac{\|x\|\|J_f(x)\|}{\|f(x)\|}\cdot \frac{\|\Delta x\|}{\|x\|}
+\end{split}
+\end{equation*}\]</span>
+where <span class="math inline">\(J_f(x) \in M_{m\times n}(\mathbb R)\)</span> is the Jacobian matrix of <span class="math inline">\(f\)</span> at <span class="math inline">\(x\)</span>. Define the condition number by
+<span class="math display" id="eq:crudecondition">\[\begin{equation}
+    (\widetilde{\text{cond }f})(x) 
+    = \frac{\|x\|\|J_f(x)\|}{\|f(x)\|}. 
+\tag{2}
+\end{equation}\]</span>
+The following example is taken from <span class="citation">Gautschi (<a href="#ref-Gautschi2012">2012</a>)</span>. It illustrates that this approach is indeed less refined.
+
+<div class="example">
+<p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 1  </strong></span>Let <span class="math inline">\(f:\mathbb R^2\to \mathbb R^2\)</span> be given by
+<span class="math display">\[\begin{equation*}
+    f(x_1, x_2)
+    = \begin{bmatrix}
+    x_1^{-1} + x_2^{-1}\\
+    x_1^{-1}  - x_2^{-1}
+    \end{bmatrix}
+\end{equation*}\]</span>
+so that
+<span class="math display">\[\begin{equation*}
+    J_f(x) = 
+    \begin{bmatrix}
+    -x_1^{-2} &amp; -x_2^{-2}\\
+    - x_1^{-1} &amp; x_2^{-2}
+    \end{bmatrix}
+\end{equation*}\]</span>
+Using the notation above we have
+<span class="math display">\[\begin{equation*}
+    \Gamma(x)
+    = \begin{bmatrix}
+    |x_2|/|x_1 + x_2| &amp; |x_1|/|x_1 + x_2|\\
+    |x_2|/|x_2 - x_1| &amp; |x_1|/|x_2 - x_1|
+    \end{bmatrix}
+\end{equation*}\]</span>
+With respect to the (operator norm induced by the) norm <span class="math inline">\(\|\cdot\|_\infty\)</span> we have
+<span class="math display">\[\begin{equation*}
+    \|\Gamma(x)\|_\infty = \max_i\sum_{j = 1}^2 |\gamma_{ij}(x)|. 
+\end{equation*}\]</span>
+In particular, we have ill conditioning with respecto to <span class="math inline">\((\text{cond }f)\)</span> whenever <span class="math inline">\(x_1\approx x_2\)</span> or <span class="math inline">\(x_1 \approx - x_2\)</span> and <span class="math inline">\(|x_1|\)</span> (and hence <span class="math inline">\(|x_2|\)</span>) is not small. For example <span class="math inline">\(x = (1, 1 \pm \delta)\)</span> for <span class="math inline">\(\delta &gt; 0\)</span> small. In fact by equivalence of norms in finite dimensions, this statment holds indpendently of which operator norm is used.</p>
+On the other hand, using <span class="math inline">\(1\)</span>-norms, we have
+<span class="math display">\[\begin{equation*}
+    \|J_f(x)\|_1 = \frac{2}{x_1^2x_2^2}\max\{x_1^2, x_2^2\}
+\end{equation*}\]</span>
+and therefore, when <span class="math inline">\(x = (1, 1\pm \delta)\)</span>
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    (\widetilde{\text{cond }f})(x)
+    &amp; = 2\frac{(|x_1| + |x_2|)\max\{x_1^2, x_2^2\}}{|x_1||x_2|(|x_1 + x_2| + |x_1 - x_2|)}\\
+    &amp; \approx 2
+\end{split}
+\end{equation*}\]</span>
+</div>
+
+An example where <span class="math inline">\(\widetilde{\text{cond }f}\)</span> is used.
+
+<div class="example">
+<span id="exm:unnamed-chunk-2" class="example"><strong>Example 2  </strong></span>Let <span class="math inline">\(A\in M_n(\mathbb R)\)</span> be an invertible matrix and consider the matrix multiplicatio map <span class="math inline">\(f:\mathbb R^n\to \mathbb R^n\)</span> given by
+<span class="math display">\[\begin{equation*}
+    f(x) = Ax. 
+\end{equation*}\]</span>
+In this case the commonly used notion of condition number is
+<span class="math display">\[\begin{equation*}
+    \kappa(A) := \|A\|\|A^{-1}\|. 
+\end{equation*}\]</span>
+This notion does not perfectly coincide with either of <a href="#eq:condition">(1)</a> or <a href="#eq:crudecondition">(2)</a>. However, in some sense it is the most naive notion of condition number that is uniform in <span class="math inline">\(x\)</span>. It is easily derived from <a href="#eq:crudecondition">(2)</a>, the imposition of uniformity in <span class="math inline">\(x\)</span> and the definition of the operator norm (of <span class="math inline">\(A^{-1}\)</span>) as follows. For this <span class="math inline">\(f\)</span>, the Jacobian matrix is <span class="math inline">\(J_f(x) = A\)</span> for all <span class="math inline">\(x\in\mathbb R^n\)</span>. Therefore
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    (\widetilde{\text{cond }f})(x)
+    &amp; = \frac{\|x\| \|A\|}{\|Ax\|}\\
+    &amp; = \frac{\|A^{-1}A x\| \|A\|}{\|Ax\|}\\
+    &amp; \leq \|A^{-1}\|\|A\|. 
+\end{split}
+\end{equation*}\]</span>
+</div>
+
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-Gautschi2012">
+<p>Gautschi, Walter. 2012. <em>Numerical Analysis</em>. Springer.</p>
+</div>
+</div>
+</div>

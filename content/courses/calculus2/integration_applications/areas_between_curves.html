@@ -8,8 +8,49 @@ weight: 210
 
 
 <p>In this note I will overview the derivation of the formula for computing the area of a region bounded the graphs of two continuous functions; it comes from a simple Riemann sum argument. I will then discuss the most basic application of the theorem. Finally, I will discuss three potential obstacles to application of the theorem and how to overcome each. The computations are kept simple in order to make the main ideas as transparent as possible. In practice, a second-semester calculus student would be expected to apply these ideas in a more nuanced setting that is discussed here.</p>
-<div id="the-theorem-and-basic-application" class="section level2">
-<h2>The theorem and basic application</h2>
+<div id="the-theorem-and-its-derivation" class="section level2">
+<h2>The theorem and its derivation</h2>
+<p>Suppose <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are continuous functions of <span class="math inline">\(x\in [a, b]\)</span>. Suppose further that one of <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> is larger than the other of <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> <em>for all</em> <span class="math inline">\(x\in [a,b]\)</span>. For the sake of concreteness, I’ll suppose <span class="math inline">\(f(x) \geq g(x)\)</span> for all <span class="math inline">\(x\in [a,b]\)</span>. We want to derive a computationally convenient means of determining the area <span class="math inline">\(A\)</span> of the region <span class="math inline">\(R\)</span> in the <span class="math inline">\((x,y)\)</span>-plane bounded by the curve <span class="math inline">\(y = f(x)\)</span>, the curve <span class="math inline">\(y = g(x)\)</span> and the vertical lines <span class="math inline">\(x = a\)</span> and <span class="math inline">\(x = b\)</span>.</p>
+<figure>
+<img 
+    src ="/img/calculus_2/areas_between_curves/area_between.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+The region whose area we want to compute is shaded gray.
+</figcaption>
+</figure>
+<p>The derivation will follow a Riemann sum approach. In particular, we will approximate <span class="math inline">\(R\)</span> as a union of rectangles and thus the area <span class="math inline">\(A\)</span> of <span class="math inline">\(R\)</span> will be approximated by the sum of the areas of the approximating rectangles. Letting the number of rectangles increase without bound, we will obtain an expression for the exact value of <span class="math inline">\(A\)</span>.</p>
+<p>For any postive integer <span class="math inline">\(n\)</span> we partition the interval <span class="math inline">\([a,b]\)</span> into <span class="math inline">\(n\)</span> subintervals<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, each having width <span class="math inline">\(\Delta x = (b - a)/n\)</span>. For <span class="math inline">\(i = 1, 2, \ldots, n\)</span>, we choose a representative point <span class="math inline">\(x_i^*\)</span> in the <span class="math inline">\(i^{\text{th}}\)</span> subinterval and create a rectangle of width <span class="math inline">\(\Delta x\)</span> and height <span class="math inline">\(f(x_i^*) - g(x_i^*)\)</span> on this subinterval. The area of this rectangle is
+<span class="math display">\[\begin{equation*}
+    A_i = (f(x_i^*) - g(x_i^*))\Delta x. 
+\end{equation*}\]</span></p>
+<figure>
+<img 
+    src ="/img/calculus_2/areas_between_curves/ith_rectangle.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+The <span class="math inline">\(i^{\text{th}}\)</span> rectangle has height <span class="math inline">\(f(x_i^*) - g(x_i^*)\)</span> and width <span class="math inline">\(\Delta x\)</span>.
+</figcaption>
+</figure>
+<p>Summing the areas of the rectangles gives an approximation for the area <span class="math inline">\(A\)</span> of region <span class="math inline">\(R\)</span>:
+<span class="math display">\[\begin{equation*}
+    A 
+    \approx \sum_{i = 1}^n A_i
+    = \sum_{i = 1}^n(f(x_i^*) - g(x_i^*)) \Delta x. 
+\end{equation*}\]</span>
+Allowing the number of rectangles <span class="math inline">\(n\)</span> to increase without bound and in view of the continuity of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> we obtain the the following expression for (the exact value of) <span class="math inline">\(A\)</span>:
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    A 
+    &amp; = \lim_{n\to\infty}\sum_{i = 1}^n(f(x_i^*) - g(x_i^*)) \Delta x\\
+    &amp; = \int_a^b(f(x) - g(x))\; \mathrm d x
+\end{split}
+\end{equation*}\]</span></p>
+<p>This argument provides the hueristic of the justification for the following theorem:</p>
 
 <div class="theorem">
 <span id="thm:area" class="theorem"><strong>Theorem 1  </strong></span>If <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are continuous functions on the inverval <span class="math inline">\([a, b]\)</span> and if <span class="math inline">\(f(x)\geq g(x)\)</span> for all <span class="math inline">\(x\in [a,b]\)</span> then the area <span class="math inline">\(A\)</span> of the region bounded by the graphs of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> and the vertical lines <span class="math inline">\(x = a\)</span> and <span class="math inline">\(x= b\)</span> is
@@ -18,12 +59,15 @@ weight: 210
 \end{equation*}\]</span>
 </div>
 
-<p>As far as applications of this theorem, there are a few techniques that one must be aware of. Let’s start with the most basic example.</p>
+</div>
+<div id="a-basic-application-of-theorem-refthmarea" class="section level2">
+<h2>A basic application of Theorem <a href="#thm:area">1</a></h2>
+<p>As far as applications of this theorem, there are a few techniques that one must be aware of. Let’s start with the simplest case where all quantities needed to apply the theorem are explicitly given.</p>
 
 <div class="example">
 <p><span id="exm:area1" class="example"><strong>Example 1  </strong></span>Compute the area of the region bounded by the graphs of <span class="math inline">\(f(x) = 3 - x^2\)</span> and <span class="math inline">\(g(x) = x^2 - 5\)</span> and the vertical lines <span class="math inline">\(x = 0\)</span> and <span class="math inline">\(x = 1\)</span>.</p>
 <p><em>Solution.</em> Both of the given functions are polynomials and are therefore continuous for all <span class="math inline">\(x\in \mathbb R\)</span>. In particular, they are continuous for all <span class="math inline">\(x\in [0, 1]\)</span>. Thus, once we figure out which of <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> (if any) is larger on the interval <span class="math inline">\([0, 1]\)</span>, we can apply Theorem <a href="#thm:area">1</a> to recover the desired area.</p>
-<p>Since the graphs of both of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be sketched using precalculus-level techniques<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, we can determine which of <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> (if any) is larger over the interval <span class="math inline">\([0,1]\)</span> by sketching their graphs. The graph of <span class="math inline">\(f\)</span> is a parabola that opens downward with vertex at <span class="math inline">\((0, 3)\)</span> and the graph of <span class="math inline">\(g\)</span> is a parabola that opens upward with vertex at <span class="math inline">\((0, -5)\)</span>. In particular, the inequality <span class="math inline">\(f(x)\geq g(x)\)</span> is satsified for all <span class="math inline">\(x\in [0, 1]\)</span>, see the following figure:</p>
+<p>Since the graphs of both of <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> can be sketched using precalculus-level techniques<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>, we can determine which of <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> (if any) is larger over the interval <span class="math inline">\([0,1]\)</span> by sketching their graphs. The graph of <span class="math inline">\(f\)</span> is a parabola that opens downward with vertex at <span class="math inline">\((0, 3)\)</span> and the graph of <span class="math inline">\(g\)</span> is a parabola that opens upward with vertex at <span class="math inline">\((0, -5)\)</span>. In particular, the inequality <span class="math inline">\(f(x)\geq g(x)\)</span> is satsified for all <span class="math inline">\(x\in [0, 1]\)</span>, see the following figure:</p>
 <figure>
 <img 
     src ="/img/calculus_2/areas_between_curves/parabolas_1.svg"
@@ -51,7 +95,7 @@ Now that all of the relevant hypotheses have been verified, we can recover the a
 </div>
 <div id="determining-the-integration-bounds" class="section level2">
 <h2>Determining the integration bounds</h2>
-<p>In Example <a href="#exm:area1">1</a>, the interval over which the integration was to take place was given. In some cases, we may need to determine, based on the wording of the problem and an elementary computation, what the bounds of integration should be.</p>
+<p>In Example <a href="#exm:area1">1</a>, the interval over which the integration was to take place was given. In some cases, we may need to determine, based on the wording of the problem and an elementary computation, the bounds of integration that should be used when applying Theorem <a href="#thm:area">1</a>.</p>
 
 <div class="example">
 <p><span id="exm:unnamed-chunk-1" class="example"><strong>Example 2  </strong></span>Compute the area of the region in the right half of the <span class="math inline">\((x,y)\)</span>-plane that is bounded by the graphs of <span class="math inline">\(f(x) = 3 - x^2\)</span> and <span class="math inline">\(g(x) = x^2 - 5\)</span>.</p>
@@ -107,7 +151,7 @@ In this case, the interval under consideration is <span class="math inline">\([0
 Neither of the inequlities <span class="math inline">\(f(x)\geq g(x)\)</span> or <span class="math inline">\(g(x)\geq f(x)\)</span> hold for all <span class="math inline">\(x\in [0, 3]\)</span>. Indeed, if <span class="math inline">\(x\in [0, 2]\)</span> then <span class="math inline">\(f(x)\geq g(x)\)</span>, but if <span class="math inline">\(x\in [2, 3]\)</span> then <span class="math inline">\(g(x)\geq f(x)\)</span>.
 </figcaption>
 </figure>
-To overcome this obstacle, we split the interval <span class="math inline">\([0,3]\)</span> into two subintervals <span class="math inline">\([0, 2]\)</span> and <span class="math inline">\([2, 3]\)</span>. These particular subintervals are chosen because on each of these subintervals, we can identify which function (among <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>) is larger and which function is smaller over the entire subinterval. Due to the additivity of the definite integral<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. We may recover the area <span class="math inline">\(A\)</span> of the region described in the problem statement by applying Theorem <a href="#thm:area">1</a> separately over the intervals <span class="math inline">\([0, 2]\)</span> and <span class="math inline">\([2,3]\)</span> and then adding the results. In symbols:
+To overcome this obstacle, we split the interval <span class="math inline">\([0,3]\)</span> into two subintervals <span class="math inline">\([0, 2]\)</span> and <span class="math inline">\([2, 3]\)</span>. These particular subintervals are chosen because on each of these subintervals, we can identify which function (among <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>) is larger and which function is smaller over the entire subinterval. Due to the additivity of the definite integral<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. We may recover the area <span class="math inline">\(A\)</span> of the region described in the problem statement by applying Theorem <a href="#thm:area">1</a> separately over the intervals <span class="math inline">\([0, 2]\)</span> and <span class="math inline">\([2,3]\)</span> and then adding the results. In symbols:
 <span class="math display">\[\begin{equation*}
 \begin{split}
     A 
@@ -180,7 +224,8 @@ Finally, we execute our strategy by applying equation <a href="#eq:strategy">(1)
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>for example by applying suitable transformations to the curve <span class="math inline">\(y = x^2\)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>Recall that <em>additivity</em> of the the definite integral means that <span class="math inline">\(\int_a^b f(x)\; \mathrm d x = \int_a^c f(x)\; \mathrm d x + \int_c^b f(x)\; \mathrm d x\)</span> whenever <span class="math inline">\(f\)</span> is an integrable function over an interval containing all of <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Note that we need to leave the number of subintervals unspecified so that later we can allow the number of subintervals to tend to <span class="math inline">\(\infty\)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>for example by applying suitable transformations to the curve <span class="math inline">\(y = x^2\)</span>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Recall that <em>additivity</em> of the the definite integral means that <span class="math inline">\(\int_a^b f(x)\; \mathrm d x = \int_a^c f(x)\; \mathrm d x + \int_c^b f(x)\; \mathrm d x\)</span> whenever <span class="math inline">\(f\)</span> is an integrable function over an interval containing all of <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
 </ol>
 </div>

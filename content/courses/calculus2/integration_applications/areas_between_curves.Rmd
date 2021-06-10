@@ -6,7 +6,51 @@ weight: 210
 ---
 In this note I will overview the derivation of the formula for computing the area of a region bounded the graphs of two continuous functions; it comes from a simple Riemann sum argument. I will then discuss the most basic application of the theorem. Finally, I will discuss three potential obstacles to application of the theorem and how to overcome each. The computations are kept simple in order to make the main ideas as transparent as possible. In practice, a second-semester calculus student would be expected to apply these ideas in a more nuanced setting that is discussed here. 
 
-## The theorem and basic application
+## The theorem and its derivation
+
+Suppose $f$ and $g$ are continuous functions of $x\in [a, b]$. Suppose further that one of $f$ or $g$ is larger than the other of $f$ or $g$ *for all* $x\in [a,b]$. For the sake of concreteness, I'll suppose $f(x) \geq g(x)$ for all $x\in [a,b]$. We want to derive a computationally convenient means of determining the area $A$ of the region $R$ in the $(x,y)$-plane bounded by the curve $y = f(x)$, the curve $y = g(x)$ and the vertical lines $x = a$ and $x = b$. 
+
+<figure>
+<img 
+    src ="/img/calculus_2/areas_between_curves/area_between.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>The region whose area we want to compute is shaded gray.</figcaption>
+</figure>
+
+The derivation will follow a Riemann sum approach. In particular, we will approximate $R$ as a union of rectangles and thus the area $A$ of $R$ will be approximated by the sum of the areas of the approximating rectangles. Letting the number of rectangles increase without bound, we will obtain an expression for the exact value of $A$. 
+
+For any postive integer $n$ we partition the interval $[a,b]$ into $n$ subintervals^[Note that we need to leave the number of subintervals unspecified so that later we can allow the number of subintervals to tend to $\infty$.], each having width $\Delta x = (b - a)/n$. For $i = 1, 2, \ldots, n$, we choose a representative point $x_i^*$ in the $i^{\text{th}}$ subinterval and create a rectangle of width $\Delta x$ and height $f(x_i^*) - g(x_i^*)$ on this subinterval. The area of this rectangle is 
+\begin{equation*}
+    A_i = (f(x_i^*) - g(x_i^*))\Delta x. 
+\end{equation*}
+
+<figure>
+<img 
+    src ="/img/calculus_2/areas_between_curves/ith_rectangle.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>The $i^{\text{th}}$ rectangle has height $f(x_i^*) - g(x_i^*)$ and width $\Delta x$.</figcaption>
+</figure>
+
+Summing the areas of the rectangles gives an approximation for the area $A$ of region $R$: 
+\begin{equation*}
+    A 
+    \approx \sum_{i = 1}^n A_i
+    = \sum_{i = 1}^n(f(x_i^*) - g(x_i^*)) \Delta x. 
+\end{equation*}
+Allowing the number of rectangles $n$ to increase without bound and in view of the continuity of $f$ and $g$ we obtain the the following expression for (the exact value of) $A$: 
+\begin{equation*}
+\begin{split}
+    A 
+    & = \lim_{n\to\infty}\sum_{i = 1}^n(f(x_i^*) - g(x_i^*)) \Delta x\\
+    & = \int_a^b(f(x) - g(x))\; \mathrm d x
+\end{split}
+\end{equation*}
+
+This argument provides the hueristic of the justification for the following theorem: 
 
 ```{theorem, label = "area"}
 If $f$ and $g$ are continuous functions on the inverval $[a, b]$ and if $f(x)\geq g(x)$ for all $x\in [a,b]$ then the area $A$ of the region bounded by the graphs of $f$ and $g$ and the vertical lines $x = a$ and $x= b$ is 
@@ -15,7 +59,9 @@ If $f$ and $g$ are continuous functions on the inverval $[a, b]$ and if $f(x)\ge
 \end{equation*}
 ```
 
-As far as applications of this theorem, there are a few techniques that one must be aware of. Let's start with the most basic example. 
+## A basic application of Theorem \@ref(thm:area)
+
+As far as applications of this theorem, there are a few techniques that one must be aware of. Let's start with the simplest case where all quantities needed to apply the theorem are explicitly given. 
 
 ```{example, label = "area1"}
 Compute the area of the region bounded by the graphs of $f(x) = 3 - x^2$ and $g(x) = x^2 - 5$ and the vertical lines $x = 0$ and $x = 1$. 
@@ -49,7 +95,7 @@ Now that all of the relevant hypotheses have been verified, we can recover the a
 ```
 
 ## Determining the integration bounds
-In Example \@ref(exm:area1), the interval over which the integration was to take place was given. In some cases, we may need to determine, based on the wording of the problem and an elementary computation, what the bounds of integration should be. 
+In Example \@ref(exm:area1), the interval over which the integration was to take place was given. In some cases, we may need to determine, based on the wording of the problem and an elementary computation, the bounds of integration that should be used when applying Theorem \@ref(thm:area). 
 
 ```{example}
 Compute the area of the region in the right half of the $(x,y)$-plane that is bounded by the graphs of $f(x) = 3 - x^2$ and $g(x) = x^2 - 5$. 

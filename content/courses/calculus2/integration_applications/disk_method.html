@@ -1,0 +1,118 @@
+---
+date: "2021-06-09"
+title: Volumes of Solids of Revolution- The Disk Method
+type: book
+weight: 220
+---
+
+
+
+<p>In this note I will overview the derivation of the formula for using the disk/ washer method for computing the volume of a solid of revolution. This is a special case of the more general method of computing volumes of solids by slicing.</p>
+<p>I will discuss three potential obstacles to application of the theorem and how to overcome each. The computations are kept simple in order to make the main ideas as transparent as possible. In practice, a second-semester calculus student would be expected to apply these ideas in a more nuanced setting that is discussed here.</p>
+<div id="the-theorem-and-its-derivation" class="section level2">
+<h2>The theorem and its derivation</h2>
+<p>Let <span class="math inline">\(f:[a, b]\to [0, \infty)\)</span> be a continuous function and let <span class="math inline">\(R\)</span> denote the region in the <span class="math inline">\((x,y)\)</span>-plane bounded by the <span class="math inline">\(x\)</span>-axis, the curve <span class="math inline">\(y = f(x)\)</span> and the vertical lines <span class="math inline">\(x = a\)</span> and <span class="math inline">\(x = b\)</span>.</p>
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/generating_region.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+The region that will be used to generate a solid of revolution
+</figcaption>
+</figure>
+Revolving <span class="math inline">\(R\)</span> about the <span class="math inline">\(x\)</span> axis generates a solid (appropriately called a <em>solid of revolution</em>).
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/surf_revolution.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+The solid of revolution obtained by revolving region <span class="math inline">\(R\)</span> about the <span class="math inline">\(x\)</span>-axis
+</figcaption>
+</figure>
+We are interested in deriving a formula for computing the volume of the solid. To do this we partition the interval <span class="math inline">\([a,b]\)</span> into <span class="math inline">\(n\)</span> subintervals, each having width <span class="math inline">\(\Delta x = (b - a)/n\)</span>. For each <span class="math inline">\(i = 1, 2, \ldots, n\)</span>, we choose a representative point <span class="math inline">\(x_i^*\)</span> in the <span class="math inline">\(i^{\text{th}}\)</span> subinterval and then approximate the the region below the graph of <span class="math inline">\(f\)</span> and above the <span class="math inline">\(i^{\text{th}}\)</span> subinterval by a rectangle of width <span class="math inline">\(\Delta x\)</span> and height <span class="math inline">\(f(x_i^*)\)</span>.
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/ith_rectangle.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+Approximating the region under the graph of <span class="math inline">\(f\)</span> over the <span class="math inline">\(i^{\text{th}}\)</span> subinterval with a rectangle.
+</figcaption>
+</figure>
+Revolving this rectangle about the <span class="math inline">\(x\)</span>-axis gives a cylinder of thickness <span class="math inline">\(\Delta x\)</span> and of radius <span class="math inline">\(f(x_i^*)\)</span>. The volume of this cylinder is
+<span class="math display">\[\begin{equation*}
+    \Delta V_i = \pi f(x_i^*)^2 \Delta x
+\end{equation*}\]</span>
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/ith_cylinder.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+Approximating the region under the graph of <span class="math inline">\(f\)</span> over the <span class="math inline">\(i^{\text{th}}\)</span> subinterval with a rectangle.
+</figcaption>
+</figure>
+When all such cylinders are considered, we obtain a solid whose volume is approximately equal to the volume of the solid we wish to compute
+<figure>
+<img 
+    src ="/img/calculus_2/disk_method/disk_riemann_approx.svg"
+    width="60%" 
+    height="auto">
+</img>
+<figcaption>
+Approximating the region under the graph of <span class="math inline">\(f\)</span> over the <span class="math inline">\(i^{\text{th}}\)</span> subinterval with a rectangle.
+</figcaption>
+</figure>
+<p>Summing the volumes of the cylinders gives an approximation for the volume of the solid:
+<span class="math display">\[\begin{equation*}
+    V\approx \sum_{i = 1}^n \Delta V_i 
+    = \sum_{i = 1}^n \pi f(x_i^*)^2 \Delta x. 
+\end{equation*}\]</span>
+Finally, because <span class="math inline">\(f\)</span> is assumed continuous, we can recover the exact volume of the solid of revolution by allowing the number of rectangles <span class="math inline">\(n\)</span> to tend to infinity:
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    V 
+    &amp; = \lim_{n\to\infty}\sum_{i = 1}^n \pi f(x_i^*)^2 \Delta x\\
+    &amp; = \pi \int_a^b f(x)^2 \; \mathrm d x. 
+\end{split}
+\end{equation*}\]</span>
+This provides the hueristic for the proof of the following theorem:</p>
+
+<div class="theorem">
+<span id="thm:diskmeth" class="theorem"><strong>Theorem 1  </strong></span>Let <span class="math inline">\(f\)</span> be a continuous, non negative function on the interval <span class="math inline">\(a\leq x\leq b\)</span> and let <span class="math inline">\(R\)</span> denote the region in the <span class="math inline">\((x,y)\)</span>-plane that lies below the curve <span class="math inline">\(y = f(x)\)</span>, above the <span class="math inline">\(x\)</span>-axis and between the vertical lines <span class="math inline">\(x = a\)</span> and <span class="math inline">\(x = b\)</span>. The volume of the solid obtained by revolving <span class="math inline">\(R\)</span> about the <span class="math inline">\(x\)</span>-axis is
+<span class="math display">\[\begin{equation*}
+    V = \pi\int_a^b f(x)^2 \; \mathrm d x. 
+\end{equation*}\]</span>
+</div>
+
+</div>
+<div id="a-basic-application-of-theorem-refthmdiskmeth" class="section level2">
+<h2>A basic application of Theorem <a href="#thm:diskmeth">1</a></h2>
+
+<div class="example">
+<p><span id="exm:area1" class="example"><strong>Example 1  </strong></span>Let <span class="math inline">\(R\)</span> be the region in the <span class="math inline">\((x,y)\)</span>-plane that lies below the graph of <span class="math inline">\(f(x) = \sqrt x + 1\)</span>, above the <span class="math inline">\(x\)</span>-axis and between the vertical lines <span class="math inline">\(x =0\)</span> and <span class="math inline">\(x = 1\)</span>. Compute the volume of the solid obtained by revolving <span class="math inline">\(R\)</span> about the <span class="math inline">\(x\)</span>-axis.</p>
+<em>Solution.</em> We know from first semester calculus that the square root function is continuous on <span class="math inline">\([0, 1]\)</span><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and that every constant function is continuous. Since <span class="math inline">\(f\)</span> is the sum of two functions, both of which are continuous on <span class="math inline">\([0,1]\)</span>, <span class="math inline">\(f\)</span> is also continuous on <span class="math inline">\([0, 1]\)</span>. Having verified the hypotheses of Theorem <a href="#thm:diskmeth">1</a>, we may apply the theorem to obtain
+<span class="math display">\[\begin{equation*}
+\begin{split}
+    V 
+    &amp; = \pi\int_0^1 (\sqrt x + 1)^2\; \mathrm d x\\
+    &amp; = \pi\int_0^1(x + 2\sqrt x + 1)\; \mathrm d x\\
+    &amp; = \pi\left(\frac{x^2}{2} + \frac 4 3 x^{3/2} + x\right)\bigg|_0^1\\
+    &amp; = \frac{17\pi}6. 
+\end{split}
+\end{equation*}\]</span>
+</div>
+
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Continuity is interpreted in the appropriate one-sided sense at <span class="math inline">\(x = 0\)</span>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
