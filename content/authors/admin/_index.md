@@ -15,7 +15,6 @@ email: ""
 highlight_name: false
 interests:
 - Partial Differential Equations
-- Functional Analysis
 - Differential Geometry
 - Applied Mathematics
 organizations:
