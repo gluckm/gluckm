@@ -59,7 +59,7 @@ When all such cylinders are considered, we obtain a solid whose volume is approx
     width="60%" 
     height="auto">
 </img>
-<figcaption>Approximating the region under the graph of $f$ over the $i^{\text{th}}$ subinterval with a rectangle.</figcaption>
+<figcaption>Approximating the solid of revolution with a union of disks.</figcaption>
 </figure>
 Summing the volumes of the cylinders gives an approximation for the volume of the solid: 
 \begin{equation*}
