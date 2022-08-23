@@ -46,4 +46,6 @@ title: Mathew Gluck
 
 I am an Assistant Professor in the School of Mathematical and Statistical Sciences at Southern Illinois University. My research interests include partial differential equations, integral equations, functional analysis, differential geometry and applied mathematics. 
 
+I am the director of the Applied and Industrial Mathematics Institute (AIMI). The AIMI embarks on advanced mathematical research projects whose outcomes serve the needs of local sponsoring organizations. Typically teams of advanced undergraduate students and faculty are formed and these teams supply an intensive effort both in their analyses and in their exposition of the sponsoring organizations problem. The team reports fully to the sponsor. 
+
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/demo_resume.pdf" "newtab" >}}resumé{{< /staticref >}}.
