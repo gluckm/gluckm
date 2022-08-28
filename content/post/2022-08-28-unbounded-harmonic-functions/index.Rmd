@@ -1,0 +1,169 @@
+---
+title: Unbounded Harmonic Functions
+author: Mathew Gluck
+date: '2022-08-28'
+slug: unbounded-harmonic-functions
+categories: 
+    - Elliptic PDE
+tags: 
+    - elliptic regularity
+    - trace theorem
+    - fundamental solution
+subtitle: ''
+summary: 'Standard elliptic theory guarantees if $\Omega\subset\mathbb R^n$ is a bounded domain and if $L$ is a uniformly elliptic divergence-form operator whose coefficients are bounded on $\Omega$ then for suitably integrable $g$ and $f^1, \ldots, f^n$, any weak solution $u$ to $Lu = g + D_if^i$ in $\Omega$ that is bounded on $\partial \Omega$ is necessarily bounded on $\Omega$. The boundedness of such $u$ on $\Omega$ is no longer true if the boundedness of $u$ on $\partial\Omega$ is not assumed. We explore this point in the simplest case of $L = \Delta$ and $g = f^i = 0$.'
+authors: []
+lastmod: '2022-08-28T14:10:09-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: true
+---
+
+In this note I will discuss unbounded weakly harmonic functions on bounded domains. The motivation for this note comes from the study of elliptic regularity theory. In particular, if $L$ is the divergence form operator
+\begin{equation*}
+    Lu = D_i(a^{ij}(x)D_j u + b^i(x) u) + c^i(x)D_i u + d(x) u, 
+\end{equation*}
+where the coefficients are bounded and the principal coefficients $a^{ij}$ satisfy the uniform ellipticity condition, then there is a constant $C>0$ such that for every weak solution $u$ to $Lu = g + D_if^i$ in $\Omega$ that is bounded on $\partial \Omega$, the estimate
+\begin{equation*}
+    \|u\|_{L^\infty(\Omega)}
+    \leq C(...)
+\end{equation*}
+holds. This estimate is false in general for solutions $u$ that are unbounded on $\partial \Omega$. In this post I will discuss weak solutions of $\Delta u = 0$ on bounded domains $\Omega$ that are unbounded on $\partial \Omega$. 
+
+# Unbounded Harmonic Functions from the Fundamental Solution
+The fundamental solution for $\Delta$ is 
+\begin{equation*}
+    \Gamma(x) = 
+    \begin{cases}
+    \frac 1{2\pi}\log|x| & \text{ if } n = 2\\
+    \frac1{n(n - 2)\omega_n}|x|^{2- n} & \text{ if }n\geq 3    
+    \end{cases}
+\end{equation*}
+This function is harmonic away from $x = 0$ and unbounded as $x\to 0$. Thus, if one is interested in constructing examples of unbounded harmonic functions on bounded domains, the fundamental solution is a natural starting point. The following example is perhaps the simplest example of an unbounded harmonic function on a bounded domain.
+
+
+```{example, label = "unbounded1"}
+Let 
+\begin{equation*}
+    \Omega 
+    = B(e_n, 1)
+    = \{x = (x', x_n) \in \mathbb R^n: |x'|^2 + (x - 1)^2 < 1\},
+\end{equation*}
+where $e_n = (0, \ldots, 0, 1)$ is the $n^{\text{th}}$ standard basis vector in $\mathbb R^n$. The fundamental solution $\Gamma$ is harmonic in $\Omega$ but unbounded as $x\to 0\in \partial \Omega$. 
+```
+
+When one discusses weak solutions to PDE, one requires that the unknown functions belong to suitable Sobolev spaces. For $n\geq 3$, the function constructed in Example \@ref(exm:unbounded1) is not in $H^1(B(e_n, 1))$. Indeed, for such $n$, 
+\begin{equation*}
+    |D\Gamma(x)|^2 
+    = c_n|x|^{-2(n - 1)}
+    \not\in L^1(B(e_n, 1)), 
+\end{equation*}
+where the failure of integrability is a consequence of the inequality $2(n - 1)> n$. Thus a natural question is 
+
+> Is there any bounded domain $\Omega\subset \mathbb R^n$ for which there exists a weakly harmonic function $u\in H^1(\Omega)$ that is unbounded on $\Omega$?
+
+The answer to this question is "yes" and we can construct such a pair $\Omega$, $u$ by modifying the construction of Example \@ref(exm:unbounded1). In fact, as in Example \@ref(exm:unbounded1), we will choose $u = \Gamma$ but now, to achieve the containment $\Gamma\in H^1(\Omega)$, we simply make $\partial\Omega$ *narrow enough* near the singularity so that the desired integrability of $\Gamma$ and $D\Gamma$ can be recovered. The following definition quantifies the notion of narrowness that will be used. 
+
+::: {.definition #thetasingular name="interior $\theta$-singular"}
+For $\theta\geq 1$, a subset $\Omega \subset \mathbb R^n$ is said to be *interior $\theta$-singular* at $x^0\in \partial \Omega$ if there is $\delta>0$ and a seequence $(x^i)\subset \Omega$ such that $x^i\to x^0$ and $B(x^i, \delta|x^i - x^0|^\theta)\subset\Omega$ for all $i$. 
+:::
+
+One can easily verify that if $\Omega$ is interior $1$-singular at $x^0\in \partial \Omega$ then $\Omega$ is Lipschitz at $x^0$. Moreover, the standard example of an interior $\theta$-singular domain is 
+\begin{equation*}
+    \Omega = \{(x', x_n)\in \mathbb R^{n - 1}\times \mathbb R: |x'|< x_n^{1/\theta}\}. 
+\end{equation*}
+In fact, after cutting off the top, this domain will be used in the following example. 
+
+:::{.example #unbounded2}
+Let 
+$$
+    \Omega = \{x = (x', x_n)\in \mathbb R^{n - 1}\times \mathbb R: x_n> |x'|^{1/\theta}\}\cap \{x_n< 1\}. 
+$$ 
+The following computation (together with the fact that $\Gamma$ is less singular at $0$ than $D\Gamma$) shows that for any $p>1$ one may choose $\theta$ sufficiently large (depending on $p$) so that $\Gamma\in W^{1, p}(\Omega)$: 
+\begin{equation*}
+\begin{split}
+    \int_\Omega |D\Gamma|^p\; \mathrm d x
+    & \leq c_n\int_0^1\int_{B^{n - 1}(0, x_n^\theta)}(|x'|^2 + x_n^2)^{-\frac{p(n - 1)}2}\; \mathrm d x' \; \mathrm d x_n\\
+    & \leq c_n\int_0^1 x_n^{-p(n - 1)}|B^{n - 1}(0, x_n^\theta)|\; \mathrm d x_n\\
+    & \leq c_n \int_0^1 x_n^{-(p- \theta)(n - 1)}\; \mathrm d x_n\\
+    & \leq C(n, p, \theta)
+\end{split}
+\end{equation*}
+provided $\theta> p - \frac 1 {n - 1}$. In particular, for any $p>1$, by choosing $\theta$ as such one finds that $\Gamma\in W^{1, p}(\Omega)$ is harmonic in $\Omega$ and unbounded as $x\to 0\in \partial\Omega$.
+:::
+
+Note that for $p> n$, the construction in Example \@ref(exm:unbounded2) does not contradict the embedding $W^{1,p}(\Omega)\hookrightarrow C^{0, 1 - n/p}(\overline\Omega)$ as that embedding requires a smoothness of $\partial \Omega$ that is not present in the above construction. 
+
+:::{.exercise}
+If possible, use the idea of Example \@ref(exm:unbounded2) to construct an example of a bounded domain $\Omega$ and a function $u\in H^1(\Omega)$ for which $u$ is weakly harmonic in $\Omega$ and for which $u$ is unbounded on every ball of the form $B(x^0, \varepsilon)$ with $x^0\in \partial \Omega$. I have not tried this exercise but, if I were to try it, I would attempt to use a limiting procedure to construct $\Omega$ that is interior $\theta$-singular on a countable dense subset of $\{x^j:j\in \mathbb N\}\subset \partial \Omega$ and then construct $u$ as a weighted sum of the form $u = \sum_{j = 1}^\infty w_j\Gamma(x - x^j)$, where $\{w_j\}_{j = 1}^\infty\subset \mathbb R$ are suitably chosen weights. 
+:::
+
+In view of the constructions in Examples \@ref(exm:unbounded1) and \@ref(exm:unbounded2), one is naturally led to ask the following question: 
+
+> Is there any *smooth* bounded domain $\Omega\subset \mathbb R^n$ together with a weakly harmonic function $u\in H^1(\Omega)$ for which $u$ is unbounded near $\partial \Omega$?
+
+# Unbounded Weakly Harmonic Functions on Smooth Bounded Domains
+Knowing a little theory can go a long way. 
+
+
+::: {.definition #ffractionalSobolev name="Fractional Sobolev Spaces"}
+For $0< s < 1$ and $\Omega \subset \mathbb R^n$, the ($L^2$-based) fractional Sobolev space of order $s$ is denoted $H^s(\Omega)$ and is defined by
+\begin{equation*}
+    H^s(\Omega)
+    = \{u\in \mathcal D'(\Omega): \|u\|_{H^s(\Omega)}< \infty\},
+\end{equation*}
+where 
+\begin{equation*}
+    \|u\|_{H^s(\Omega)}^2
+    = \|u\|_{L^2(\Omega)}^2 + \int_\Omega\int_\Omega\frac{|u(x) - u(y)|^2}{|x- y|^{n + 2s}}\; \mathrm d x \; \mathrm d y.
+\end{equation*}
+:::
+
+Let us consider the problem 
+\begin{equation*}
+\begin{cases}
+    \Delta u = 0 & \text{ on }B_1\\
+    u= g & \text{ on }\partial B_1
+\end{cases}
+\end{equation*}
+where $g\in H^{1/2}(\partial B_1)$. The trace theorem ensures that $H^{1/2}(\partial B_1)$ is the space of traces of $H^1(B_1)$ functions. That is, if $\gamma_0$ is the trace map then $H^{1/2}(\partial B_1) = \gamma_0(H^1(B_1))$. Thus, given $g\in H^{1/2}(\partial B_1)$ there is $v\in H^1(B_1)$ such that $\gamma_0(v) = g$. Let us fix any such $v$. Since $\Delta v\in H^{-1}(B_1)$, the Lax-Milgram Theorem guarantees that the problem 
+\begin{equation*}
+\begin{cases}
+    -\Delta w = \Delta v & \text{ in }B_1\\
+    w = 0 & \text{ on }\partial B_1
+\end{cases}
+\end{equation*}
+has a unique solution $w\in H^1(B_1)$ and that 
+\begin{equation*}
+    \|w\|_{H^1(B_1)} 
+    \leq C\|\Delta v\|_{H^{-1}(B_1)}
+    \leq C\|v\|_{H^1(B_1)}. 
+\end{equation*}
+Now fixing such $w$ and defining $u\in H^1(B_1)$ by $u= v + w$ we find that $u$ satisfies
+\begin{equation*}
+\begin{cases}
+    \Delta u= 0 & \text{ in }B_1\\
+    u = g & \text{ on }\partial B_1.
+\end{cases}
+\end{equation*}
+Moreover, 
+\begin{equation*}
+\begin{split}
+    \|u\|_{H^1(B_1)}
+    & \leq \|v\|_{H^1(B_1)} + \|w\|_{H^1(B_1)}\\
+    & \leq C\|v\|_{H^1(B_1)}\\
+    &\leq C\|g\|_{H^{1/2}(B_1)}, 
+\end{split}
+\end{equation*}
+where the final inequality follows from the fact that $\gamma_0:H^1(B_1)\to H^{1/2}(\partial B_1)$ is a bounded linear surjectiv emap, so the Open Mapping Theorem ensures that $\gamma_0$ is bounded below by a positve constant. 
+
+
+
+
+
+
+
+
