@@ -14,7 +14,7 @@ links:
 #  url: http://example.org
 projects:
 #- internal-project
-publication: ""
+publication: '*Nonlinear Analysis, 214*: 112567'
 publication_short: ""
 publication_types:
 - "2"
