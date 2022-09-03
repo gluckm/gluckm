@@ -19,6 +19,9 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+bibliography: ../references.bib
+link-citations: true
+biblio-style: alpha
 draft: true
 ---
 
@@ -40,7 +43,7 @@ holds. This estimate is false in general for solutions <span class="math inline"
 <span class="math display">\[\begin{equation*}
     \Gamma(x) =
     \begin{cases}
-    \frac 1{2\pi}\log|x| &amp; \text{ if } n = 2\\
+    -\frac 1{2\pi}\log|x| &amp; \text{ if } n = 2\\
     \frac1{n(n - 2)\omega_n}|x|^{2- n} &amp; \text{ if }n\geq 3    
     \end{cases}
 \end{equation*}\]</span>
@@ -101,7 +104,7 @@ provided <span class="math inline">\(\theta&gt; p - \frac 1 {n - 1}\)</span>. In
 </div>
 <div id="unbounded-weakly-harmonic-functions-on-smooth-bounded-domains" class="section level1">
 <h1>Unbounded Weakly Harmonic Functions on Smooth Bounded Domains</h1>
-<p>Knowing a little theory can go a long way.</p>
+<p>Knowing a little theory can go a long way. <span class="citation">Ding (<a href="#ref-Ding1996" role="doc-biblioref">1996</a>)</span></p>
 <div class="definition">
 <p><span id="def:ffractionalSobolev" class="definition"><strong>Definition 2  (Fractional Sobolev Spaces) </strong></span>For <span class="math inline">\(0&lt; s &lt; 1\)</span> and <span class="math inline">\(\Omega \subset \mathbb R^n\)</span>, the (<span class="math inline">\(L^2\)</span>-based) fractional Sobolev space of order <span class="math inline">\(s\)</span> is denoted <span class="math inline">\(H^s(\Omega)\)</span> and is defined by
 <span class="math display">\[\begin{equation*}
@@ -151,4 +154,9 @@ Moreover,
 \end{split}
 \end{equation*}\]</span>
 where the final inequality follows from the fact that <span class="math inline">\(\gamma_0:H^1(B_1)\to H^{1/2}(\partial B_1)\)</span> is a bounded linear surjectiv emap, so the Open Mapping Theorem ensures that <span class="math inline">\(\gamma_0\)</span> is bounded below by a positve constant.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Ding1996" class="csl-entry">
+Ding, Zhonghai. 1996. <span>“A Proof of the Trace Theorem of <span>S</span>obolev Spaces on <span>L</span>ipschitz Domains.”</span> <em>Proceedings of the American Mathematical Society</em> 124 (2): 591–600.
+</div>
+</div>
 </div>

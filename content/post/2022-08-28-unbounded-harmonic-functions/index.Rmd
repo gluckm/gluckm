@@ -19,6 +19,9 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+bibliography: ../references.bib
+link-citations: true
+biblio-style: alpha
 draft: true
 ---
 
@@ -38,8 +41,8 @@ The fundamental solution for $\Delta$ is
 \begin{equation*}
     \Gamma(x) = 
     \begin{cases}
-    \frac 1{2\pi}\log|x| & \text{ if } n = 2\\
-    \frac1{n(n - 2)\omega_n}|x|^{2- n} & \text{ if }n\geq 3    
+    -\frac 1{2\pi}\log|x| & \text{ if } n = 2\\
+    \frac1{n(n - 2)\omega_n}|x|^{2- n} & \text{ if }n\geq 3.     
     \end{cases}
 \end{equation*}
 This function is harmonic away from $x = 0$ and unbounded as $x\to 0$. Thus, if one is interested in constructing examples of unbounded harmonic functions on bounded domains, the fundamental solution is a natural starting point. The following example is perhaps the simplest example of an unbounded harmonic function on a bounded domain.
@@ -106,7 +109,7 @@ In view of the constructions in Examples \@ref(exm:unbounded1) and \@ref(exm:unb
 > Is there any *smooth* bounded domain $\Omega\subset \mathbb R^n$ together with a weakly harmonic function $u\in H^1(\Omega)$ for which $u$ is unbounded near $\partial \Omega$?
 
 # Unbounded Weakly Harmonic Functions on Smooth Bounded Domains
-Knowing a little theory can go a long way. 
+Knowing a little theory can go a long way. @Ding1996
 
 
 ::: {.definition #ffractionalSobolev name="Fractional Sobolev Spaces"}
