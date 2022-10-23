@@ -52,7 +52,7 @@ try as a first approach.
 
 # A natural first approach
 The most immediate method one may try to compute the Jacobian of $\varphi$ is to first compute
-all partials of all coordinate maps of $\varphi$, organize said partial derivatives into a matrix, 
+all partial derivatives of all coordinate maps of $\varphi$, organize said partial derivatives into a matrix, 
 then compute the determinant of the resulting matrix. Following this strategy, I will denote
 the $i^{\text{th}}$ coordinate function of $\varphi$ by $\varphi_i$ so that
 \begin{equation*}
@@ -62,7 +62,7 @@ With this notation, the partial derivatives of the $i^{\text{th}}$ coordinate fu
 \begin{equation}
     \frac{\partial \varphi_i}{\partial x_j}(x)
     = \frac 1{|x|^4}\left(|x|^2 \delta_{ij} - 2x_ix_j\right)
-    \qquad \text{ for } i, j = 1, \ldots, n,  
+    \qquad \text{ for } j = 1, \ldots, n,  
     (\#eq:partials)
 \end{equation}
 and hence the matrix $D\varphi(x) = \left(\frac{\partial\varphi_i}{\partial x_j}\right)_{ij}$
@@ -82,7 +82,7 @@ row or column of their choosing.
 
 The above-described strategy is reasonable in low 
 dimensions, say $n = 2$ or $n = 3$ but no one would want to do this for any higher
-dimension. Even if someone were sufficiently determined and sufficiently careful enough
+dimension. Even if someone were sufficiently determined and careful enough
 to carry out this computation for some $n \geq 4$, 
 they would still lack a formula for $\det D\varphi$ that holds for general $n$. 
 To obtain such a formula one may consider attempting an inductive 

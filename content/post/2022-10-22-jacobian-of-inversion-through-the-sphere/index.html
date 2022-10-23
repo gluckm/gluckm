@@ -52,7 +52,7 @@ try as a first approach.</p>
 <div id="a-natural-first-approach" class="section level1">
 <h1>A natural first approach</h1>
 <p>The most immediate method one may try to compute the Jacobian of <span class="math inline">\(\varphi\)</span> is to first compute
-all partials of all coordinate maps of <span class="math inline">\(\varphi\)</span>, organize said partial derivatives into a matrix,
+all partial derivatives of all coordinate maps of <span class="math inline">\(\varphi\)</span>, organize said partial derivatives into a matrix,
 then compute the determinant of the resulting matrix. Following this strategy, I will denote
 the <span class="math inline">\(i^{\text{th}}\)</span> coordinate function of <span class="math inline">\(\varphi\)</span> by <span class="math inline">\(\varphi_i\)</span> so that
 <span class="math display">\[\begin{equation*}
@@ -62,7 +62,7 @@ With this notation, the partial derivatives of the <span class="math inline">\(i
 <span class="math display" id="eq:partials">\[\begin{equation}
     \frac{\partial \varphi_i}{\partial x_j}(x)
     = \frac 1{|x|^4}\left(|x|^2 \delta_{ij} - 2x_ix_j\right)
-    \qquad \text{ for } i, j = 1, \ldots, n,  
+    \qquad \text{ for } j = 1, \ldots, n,  
     \tag{2}
 \end{equation}\]</span>
 and hence the matrix <span class="math inline">\(D\varphi(x) = \left(\frac{\partial\varphi_i}{\partial x_j}\right)_{ij}\)</span>
@@ -81,7 +81,7 @@ To compute the determinant of <span class="math inline">\(D\varphi(x)\)</span> o
 row or column of their choosing.</p>
 <p>The above-described strategy is reasonable in low
 dimensions, say <span class="math inline">\(n = 2\)</span> or <span class="math inline">\(n = 3\)</span> but no one would want to do this for any higher
-dimension. Even if someone were sufficiently determined and sufficiently careful enough
+dimension. Even if someone were sufficiently determined and careful enough
 to carry out this computation for some <span class="math inline">\(n \geq 4\)</span>,
 they would still lack a formula for <span class="math inline">\(\det D\varphi\)</span> that holds for general <span class="math inline">\(n\)</span>.
 To obtain such a formula one may consider attempting an inductive
