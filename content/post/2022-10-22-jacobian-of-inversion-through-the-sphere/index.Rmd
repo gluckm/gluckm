@@ -1,0 +1,161 @@
+---
+# Documentation: https://wowchemy.com/docs/managing-content/
+
+title: "Jacobian of Inversion Through the Sphere"
+subtitle: ""
+summary: ""
+authors: []
+tags: []
+categories: []
+date: 2022-10-22T22:35:17-05:00
+lastmod: 2022-10-22T22:35:17-05:00
+featured: false
+draft: false
+
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image:
+  caption: ""
+  focal_point: ""
+  preview_only: false
+
+# Projects (optional).
+#   Associate this post with one or more of your projects.
+#   Simply enter your project's folder or file name without extension.
+#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
+#   Otherwise, set `projects = []`.
+projects: []
+---
+
+Inversion through the unit sphere is the map $\varphi: \mathbb R^n\setminus\{0\}\to \mathbb R^n$ defined by 
+\begin{equation}
+    \varphi(x) = \frac x{|x|^2}, 
+    (\#eq:inversionmap)
+\end{equation}
+where here and throughout the post, I assume that $n\geq 2$. The need to compute the Jacobian determinant of this map arises frequently enough in my line of 
+research that a discussion of it's computation is warranted. Let me start by stating the 
+result that I will prove. 
+
+::: {.lemma}
+The determinant of the derivative of the map in \@ref(eq:inversionmap) at $x\in \mathbb R^n\setminus\{0\}$ is
+\begin{equation*}
+    \det(D\varphi(x)) = -|x|^{-2n}.
+\end{equation*}
+:::
+
+The lemma is established via direct computation. However suitability of the adjective *direct*
+is up for debate. This is because the first computation that one would naively use 
+to prove the lemma is not pleasant. The computation that I will present is well-known and  
+computationally convenient but it requires a bit more thought than the method one may 
+try as a first approach. 
+
+# A natural first approach
+The most immediate method one may try to compute the Jacobian of $\varphi$ is to first compute
+all partials of all coordinate maps of $\varphi$, organize said partial derivatives into a matrix, 
+then compute the determinant of the resulting matrix. Following this strategy, I will denote
+the $i^{\text{th}}$ coordinate function of $\varphi$ by $\varphi_i$ so that
+\begin{equation*}
+    \varphi_i(x) = \frac{x_i}{|x|^2} \qquad i = 1, \ldots, n.
+\end{equation*}
+With this notation, the partial derivatives of the $i^{\text{th}}$ coordinate function are
+\begin{equation}
+    \frac{\partial \varphi_i}{\partial x_j}(x)
+    = \frac 1{|x|^4}\left(|x|^2 \delta_{ij} - 2x_ix_j\right)
+    \qquad \text{ for } i, j = 1, \ldots, n,  
+    (\#eq:partials)
+\end{equation}
+and hence the matrix $D\varphi(x) = \left(\frac{\partial\varphi_i}{\partial x_j}\right)_{ij}$
+is  
+\begin{equation}
+    D\varphi(x) 
+    = |x|^{-4}\begin{bmatrix}
+    |x|^2 - 2x_1^2 & -2x_1x_2 & \ldots & -2x_1x_n\\
+    -2x_1x_2 & |x|^2 - 2x_2^2 & \ldots & -2x_2x_n\\
+    \vdots & \vdots & \ddots &  \vdots \\
+    -2x_1x_n& -2x_2x_n & \ldots & |x|^2 - 2x_n^2
+    \end{bmatrix}.
+    (\#eq:derivmatrix)
+\end{equation}
+To compute the determinant of $D\varphi(x)$ one may expand the determinant along the 
+row or column of their choosing. 
+
+The above-described strategy is reasonable in low 
+dimensions, say $n = 2$ or $n = 3$ but no one would want to do this for any higher
+dimension. Even if someone were sufficiently determined and sufficiently careful enough
+to carry out this computation for some $n \geq 4$, 
+they would still lack a formula for $\det D\varphi$ that holds for general $n$. 
+To obtain such a formula one may consider attempting an inductive 
+proof (inducting on $n$), but the tedium in this strategy quickly makes itself 
+apparent. 
+
+# A more reasonable approach
+As previously mentioned, the following computation requires a bit more thought
+than the method outlined in the previous section but it is far more approachable
+from a computational point of view. In particular, it avoids cofactor expansion-based
+computation of the determinant.  
+
+The first observation to make is that $\varphi\circ \varphi = I$
+on $\mathbb R^n\setminus\{0\}$, so the chain rule gives
+\begin{equation}
+    I = D\varphi(\varphi(x))D\varphi(x)
+    \qquad \text{ for all }x\in \mathbb R^n\setminus\{0\}. 
+    (\#eq:chainrule)
+\end{equation}
+From \@ref(eq:partials) one may write $D\varphi$ in the following basis-independent and more 
+streamlined notation (more streamlined compared to the matrix notation used in \@ref(eq:derivmatrix)):
+\begin{equation}
+    D\varphi(x) = |x|^{-2}\left(I - 2\frac{x}{|x|}\otimes \frac{x}{|x|}\right),  
+    (\#eq:dvarphi)
+\end{equation}     
+where $x\otimes y$ is the $n\times n$ matrix whose $(i,j)$ entry is $x_iy_j$. Evaluation of 
+equation \@ref(eq:dvarphi) at $\varphi(x)$ gives
+\begin{equation}
+    D\varphi(\varphi(x)) = |x|^2\left(I - 2\frac{x}{|x|}\otimes \frac{x}{|x|}\right). 
+    (\#eq:dvarphivarphi)
+\end{equation}     
+Using equations \@ref(eq:dvarphi) and \@ref(eq:dvarphivarphi) in equation \@ref(eq:chainrule), 
+then taking the determinant of both sides of the resultant equality gives
+\begin{equation*}
+\begin{split}
+    1
+    & = \det(I)
+    = \left(\det\left(I - 2\frac{x}{|x|}\otimes \frac{x}{|x|}\right)\right)^2
+\end{split}
+\end{equation*}
+for all $x\in \mathbb R^n\setminus\{0\}$. Therefore, the range of the map
+\begin{equation}
+    x\mapsto \det\left(I - 2\frac{x}{|x|}\otimes \frac{x}{|x|}\right) 
+    (\#eq:detmap)
+\end{equation}
+contained in $\{\pm 1\}$. However, the continuity of the map in \@ref(eq:detmap) together 
+with the fact that the domain of this map $\mathbb R^n\setminus\{0\}$ is connected 
+guarantees that the range is either $\{1\}$ or $\{-1\}$. That is, the map in 
+\@ref(eq:detmap) is constant and it's sole value is either $1$ or $-1$. Choosing 
+$x = e_1$, the first standard basis vector, one finds that 
+\begin{equation*}
+    I - 2e_1\otimes e_1
+    = \begin{bmatrix}
+    -1 & 0 & \ldots & 0\\
+    0 & 1 & \ldots & 0\\
+    \vdots &\vdots & \ddots &\vdots\\
+    0 & 0 & \ldots & 1
+    \end{bmatrix}
+\end{equation*}
+and hence $\det(I - 2e_1\otimes e_1) = -1$. This allows one to deduce that 
+\begin{equation*}
+    \det\left(1 - 2\frac x{|x|}\otimes \frac x{|x|}\right)
+    = -1
+    \qquad \text{ for all }x\in \mathbb R^n\setminus\{0\}. 
+\end{equation*}
+Finally, returning to \@ref(eq:dvarphi) gives
+\begin{equation*}
+    \det(D\varphi(x)) = 
+    \det\left(|x|^{-2}\left(I - 2\frac{x}{|x|}\otimes \frac{x}{|x|}\right)\right)
+    = -|x|^{-2n} 
+\end{equation*}
+as asserted.
+
+
+
+
