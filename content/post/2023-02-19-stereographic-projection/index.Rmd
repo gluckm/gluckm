@@ -1,0 +1,303 @@
+---
+title: Stereographic Projection
+author: Mathew Gluck
+date: '2023-02-19'
+slug: stereographic-projection
+categories: []
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2023-02-19T14:02:45-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+draft: False
+---
+
+Stereographic projection is a conformal (angle preserving) map $\pi: \mathbb S^n\setminus\{P\}\to \mathbb R^n$, where $P\in \mathbb S^n$ is the pole through which the projection occurs. The most typical choices for the pole are the north pole $P= N = e_{n + 1}$ or the south pole $P = S = -e_{n + 1}$, where $e_{n + 1} = (0, \ldots, 0, 1)\in \mathbb R^{n + 1}$. In addition to specifiying the pole through which the projection occurs, one must specify the plane to which the projection occurs. Common choices include the equatorial plane or the plane tangent to $\mathbb S^n$ at the antipodal point $-P$ of the chosen pole $P$. In this note I will consider 
+\begin{equation*}
+    \pi:\mathbb S^n\setminus\{S\}\to \mathbb R^n \cong\mathbb R^n\times\{0\}\subset\mathbb R^{n + 1}, 
+\end{equation*}
+the stereographic projection through the south pole to the equatorial plane. In the first section I will derive both the formula for the stereographic projection and the formula for its inverse. In the second section I will show that $\pi$ is a conformal map and I will compute the conformal factor of $(\pi^{-1})^*g_{\mathbb S^n}$, the pullback of $g_{\mathbb S^n}$ by $\pi^{-1}$. In the third section, based in the expression obtained for $(\pi^{-1})^*g_{\mathbb S^n}$, I will compute the volume form for $(\pi^{-1})^*g_{\mathbb S^n}$. Finally, based on the expression for the volume form relative to $(\pi^{-1})^*g_{\mathbb S^n}$ and the Inverse Function Theorem, I will compute an expression for the volume form of $\pi^*g_{\mathbb R^n}$, the pullback of the usual Euclidean metric by $\pi$. 
+
+# The expression for stereographic projection
+::: {.lemma #stereographicproj}
+Stereographic projection through the south pole $S = -e_{n + 1}$ to the equatorial plane is given by 
+\begin{equation}
+    \pi(\xi) = \frac{1}{1 + \xi_{n + 1}}(\xi_1, \ldots, \xi_n)
+    \qquad \xi\in \mathbb S^n\setminus\{S\}. 
+    (\#eq:stereographicproj)
+\end{equation}
+:::
+
+::: {.proof}
+For $\xi= (\xi_1, \ldots, \xi_{n + 1})\in \mathbb S^n\setminus\{S\}$, the line $L\subset \mathbb R^{n +1}$ passing through both $S$ and $\xi$ is parametrized by 
+\begin{equation*}
+\begin{split}
+	L_\xi(t) 
+	& = (1 - t) S + t\xi\\
+	& = (t\xi_1, \ldots, t\xi_n, t\xi_{n + 1} - (1 - t)), 
+\end{split}
+\end{equation*}
+where $t\in (-\infty, \infty)$. Choose $t  = t^*$ so that the $(n + 1)^{\text{st}}$ coordinate of $L_\xi(t^*)$ is zero: 
+\begin{equation*}
+	t^*\xi_{n + 1} - (1 - t^*) = 0
+	\iff
+	t^* = \frac 1{1 + \xi_{n + 1}}. 
+\end{equation*}
+Now evaluate $L_\xi$ at $t^*$ to find that
+\begin{equation*}
+	L_\xi(t^*)
+	= \frac 1{1 + \xi_{n + 1}}(\xi_1, \ldots, \xi_n, 0). 
+\end{equation*}
+Since the $(n + 1)^{\text{st}}$ coordinate of $L_\xi(t^*)$ is zero, it is common to identify $L_\xi(t^*)\in \mathbb R^{n + 1}$ with it's projection onto $\mathbb R^n$. Under this identification we obtain equation \@ref(eq:stereographicproj). 
+:::
+The inverse of $\pi$ can be found by a similar computation. For completeness, the computation is included. 
+
+::: {.lemma}
+The inverse of stereographic projection at $x\in \mathbb R^n$ is given by 
+\begin{equation}
+    \pi^{-1}(x)
+    = \left(\frac{2x_1}{1 + |x|^2}, \ldots, \frac{2x_n}{1+ |x|^2}, \frac{1 - |x|^2}{1 + |x|^2}\right).
+    (\#eq:invstereographicproj)
+\end{equation}
+:::
+
+::: {.proof}
+Given $x\in \mathbb R^n = \mathbb R^n\times\{0\}\subset \mathbb R^{n + 1}$, the line $\ell\subset\mathbb R^{n + 1}$ containing both $x$ and $S$ is parameterized by 
+\begin{equation*}
+\begin{split}
+	\ell_x(t) 
+	& = (1 - t)S + t x\\
+	& = (tx_1, \ldots, tx_n, t - 1),
+\end{split}
+\end{equation*}
+where $t\in (-\infty, \infty)$. We seek $\hat t\in \mathbb R$ for which $\ell_x(\hat t)\in \mathbb S^n\setminus\{S\}$: 
+\begin{equation*}
+	1 = |\ell(\hat t)|^2
+	= \hat t^2\sum_{j = 1}^n x_j^2 + (\hat t - 1)^2
+	\iff
+	0 = \hat t((1 + |x|^2)\hat t - 2). 
+\end{equation*}
+Obviously $\hat t = 0$ corresponds to $S\in \mathbb S^n$ (which is not what we want) so we choose $\hat t= 2(1 + |x|^2)^{-1}$ to find that
+\begin{equation*}
+	\pi^{-1}(x)
+	= \ell_x(\hat t)
+	= \left(\frac{2x_1}{1 + |x|^2}, \ldots, \frac{2x_n}{1 + |x|^2}, \frac{1 - |x|^2}{1+ |x|^2}\right),  
+\end{equation*}
+which is the equality asserted in \@ref(eq:invstereographicproj). 
+:::
+
+# Conformality
+
+Two Riemannian metrics $g$ and $\hat g$ on a common manifold $M$ are said to be *conformally equivalent* if there is a smooth positive function $f:M\to (0, \infty)$ such that $\hat g = fg$. In this case, $f$ is called the *conformal factor*^[The phrase *the conformal factor* is commonly used in the mathematical literature. However, if we write the relation as $g = f^{-1}\hat g$, then $f^{-1}$ is also *the* conformal factor.]. Euclidean space $\mathbb R^n$ carries at least two Riemannian metrics: the standard metric $g = g_{\mathbb R^n}$ and $\hat g = (\pi^{-1})^*g_{\mathbb S^n}$, the metric inherited from $\mathbb S^n$ by pulling $g_{\mathbb S^n}$ back via the inverse of stereographic projection. It turns out that these two metrics are conformally equivalent. This fact is stated precisely and an expression for the corresponding conformal factor is given in Proposition \@ref(prp:conformalequiv) below. Recall that for $\zeta\in \mathbb S^n$ and tangent vectors $X, Y\in T_\zeta \mathbb S^n$, the standard metric on $\mathbb S^n$ is defined by 
+\begin{equation*}
+	g_{\mathbb S^n}\big|_\zeta(X, Y)
+	= (\iota^*g_{\mathbb R^{n + 1}})\big|_\zeta(X, Y)
+	= g_{\mathbb R^{n + 1}}(\iota_*X, \iota_*Y)
+	= \sum_{j = 1}^{n + 1}X_jY_j, 
+\end{equation*}
+where $\iota:\mathbb S^n\to \mathbb R^{n + 1}$ is the inclusion map and $X_j, Y_j$ are the coordinates of $X$ and $Y$ relative to the standard basis.  
+
+::: {.proposition #conformalequiv}
+The pullback of the standard metric on $\mathbb S^n$ by $\pi^{-1}$ is conformally equivalent to the standard metric on $\mathbb R^n$ and for every $q\in \mathbb R^n$ the following equality holds: 
+\begin{equation*}
+	(\pi^{-1})^*g_{\mathbb S^n}\big|_q = \left(\frac 2{1 + |q|^2}\right)^2g_{\mathbb R^n}\big|_q.
+\end{equation*}
+:::
+
+::: {.proof}
+For ease of notation let us set 
+\begin{equation*}
+	g := g_{\mathbb R^n}
+	\qquad \text{ and }\qquad 
+	\hat g := (\pi^{-1})^*g_{\mathbb S^n}.
+\end{equation*}
+Let $q\in \mathbb R^n$ and set $\zeta = \pi^{-1}(q)\in \mathbb S^n$. If $v\in T_q\mathbb R^n$ then $\iota_*(\pi^{-1})_*v\in T_\zeta \mathbb R^{n + 1}$, so there are real numbers $a^1, \ldots, a^{n + 1}$ for which
+\begin{equation}
+	\iota_*(\pi^{-1})_*v = \sum_{j = 1}^{n + 1}a^j\frac{\partial}{\partial \xi^j}\bigg|_\zeta. 
+	(\#eq:inclusionpush)
+\end{equation}
+In fact, for any $k\in \{1, \ldots, n +1\}$, one may compute $a^k$ by testing equation \@ref(eq:inclusionpush) against the $k^{\text{th}}$ coordinate function $\xi^k:\mathbb R^{n + 1}\to \mathbb R$: 
+\begin{equation*}
+\begin{split}
+	a^k
+	& = \sum_{j = 1}^{n + 1}a^j\mathrm \delta_j^k\\
+	& = \sum_{j = 1}^{n + 1}a^j\frac{\partial}{\partial \xi^j}\bigg|_\zeta(\xi^k)\\
+	& = (\iota_*(\pi^{-1})_*v)(\xi^k)\\
+	& = ((\iota\circ\pi^{-1})_*v)(\xi^k)\\
+	& = v((\iota\circ\pi^{-1})^*\xi^k)\\
+	& = v(\xi^k\circ(\iota\circ \pi^{-1})). 
+\end{split}
+\end{equation*}	
+Using these expressions for $a^j$ in \@ref(eq:inclusionpush) gives
+\begin{equation*}
+	\iota_*(\pi^{-1})_*v
+	= \sum_{j= 1}^{n + 1}v(\xi^j\circ(\iota\circ\pi^{-1}))\frac{\partial}{\partial \xi^j}\bigg|_\zeta. 
+\end{equation*}
+Now from the definition of $\hat g$ and the definition of $g_{\mathbb S^n}$ we obtain
+\begin{equation}
+\begin{split}
+	\hat g\big|_q(v, v)
+	& = g_{\mathbb S^n}((\pi^{-1})_*v, (\pi^{-1})_*v)\\
+	& = g_{\mathbb R^{n + 1}}(\iota_*(\pi^{-1})_* v, \iota_*(\pi^{-1})_* v)\\
+	& = \sum_{j = 1}^{n + 1}\left[v\left(\xi^j\circ(\iota\circ\pi^{-1})\right)\right]^2. 
+\end{split}
+(\#eq:ghatstart)
+\end{equation}
+We proceed to compute (the square root of) each summand on the right-hand side of \@ref(eq:ghatstart). For $j = 1,\ldots, n$ we have 
+\begin{equation*}
+\begin{split}
+	v\left(\xi^j\circ(\iota\circ\pi^{-1})\right)
+	& = v^i\frac{\partial}{\partial x^i}\bigg|_q\left(\frac{2x^j}{1 + |x|^2}\right)\\
+	& = 2v^i\left(\frac{\mathrm \delta_i^j}{1 + |x|^2} - \frac{2x^ix^j}{(1 + |x|^2)^2}\right)\bigg|_{x = q}\\
+	& = \frac{2}{(1 + |q|^2)^2}\left(v^j(1 + |q|^2) - 2q^j\sum_{i = 1}^nv^iq^i\right)\\
+	& = \frac{2}{(1 + |q|^2)^2}\left(v^j(1 + |q|^2) - 2q^j\langle v, q\rangle\right), 
+\end{split}
+\end{equation*}
+where we use the notation $\langle v, q\rangle = \sum_{i = 1}^nv^iq^i$. The $(n + 1)^{\text{st}}$ summand on the right-hand side of \@ref(eq:ghatstart) is computed as follows: 
+\begin{equation*}
+\begin{split}
+	v\left(\xi^{n + 1}\circ(\iota\circ\pi^{-1})\right)
+	& = v^i\frac{\partial}{\partial x^i}\bigg|_q\left(\frac{1 - |x|^2}{1 + |x|^2}\right)\\
+	& = -v^i\left(\frac{2x^i}{1 + |x|^2}+ \frac{2x^i(1 - |x|^2)}{(1 + |x|^2)^2}\right)\bigg|_{x = q}\\
+	& = \frac{-2\langle v, q\rangle}{(1 + |q|^2)^2}\left(1 + |q|^2 + 1 - |q|^2\right)\\
+	& = \frac{-4\langle v, q\rangle}{(1 + |q|^2)^2}. 
+\end{split}	
+\end{equation*}
+Now returning to equation \@ref(eq:ghatstart) we have
+\begin{equation*}
+\begin{split}
+	\hat g\big|_q(v, v)
+	& = \sum_{j = 1}^{n + 1}\left[v\left(\xi^j\circ(\iota\circ\pi^{-1})\right)\right]^2\\
+	& = \sum_{j = 1}^n\frac{4}{(1 + |q|^2)^4}\left(v^j(1 + |q|^2) - 2q^j\langle v, q\rangle\right)^2 + \frac{16\langle v, q\rangle^2}{(1 + |q|^2)^4}\\
+	& = \frac{4}{(1 + |q|^2)^4}\bigg[\sum_{j = 1}^n\left(v^j(1 + |q|^2) - 2q^j\langle v, q\rangle\right)^2 + 4\langle v, q\rangle^2\bigg].
+\end{split}
+(\#eq:ghatexpand)
+\end{equation*}
+A direct computation shows that the terms in the square brackets simplify as
+\begin{equation*}
+\begin{split}
+    \sum_{j = 1}^n\left(v^j(1 + |q|^2) - 2q^j\langle v, q\rangle\right)^2 + 4\langle v, q\rangle^2
+    & = |v|^2(1 + |q|^2)^2, 
+\end{split}     
+\end{equation*}
+so returning to equation \@ref(eq:ghatexpand) gives
+\begin{equation*}
+    \hat g\big|_q(v, v)
+    = \left(\frac 2{1 + |q|^2}\right)^2 |v|^2
+    = \left(\frac 2{1 + |q|^2}\right)^2 g\big|_q(v, v). 
+\end{equation*}
+Thus, the asserted equality holds for all pairs $(v, v)\in T_q\mathbb R^n\times T_q\mathbb R^n$. In view of the polarization identity for real inner products: 
+\begin{equation*}
+	2\langle v, w\rangle
+	= |v + w|^2 - |v - w|^2
+\end{equation*}
+applied twice, once to $\hat g|_q$ and once to $\left(\frac 2{1 +|q|^2}\right)^2 g|_q$, we find that for any $v, w\in T_q\mathbb R^n$, 
+\begin{equation*}
+\begin{split}
+	2\hat g\big|_q(v, w)
+	& = \hat g\big|_q(v + w, v+ w) - \hat g\big|_q(v - w, v- w)\\
+	& = \left(\frac 2{1 + |q|^2}\right)^2 g\big|_q(v + w, v+ w) - \left(\frac 2{1 + |q|^2}\right)^2 g\big|_q(v - w, v - w)\\
+	& = 2\left(\frac 2{1 + |q|^2}\right)^2 g\big|_q(v, w). 
+\end{split}
+\end{equation*}
+The asserted equality follows immediately. 
+:::
+
+## Relationship to inversion in $\mathbb R^{n + 1}$
+
+Liouville's theorem says that if $n +1\geq 3$, then any smooth conformal mapping on a domain in $\mathbb R^{n + 1}$ can be expressed as a composition of translations, similarities, orthogonal transformations and inversions. Recalling that the derivation of the formula for $\pi$ took place entirely in $\mathbb R^{n + 1}$, and in view of the fact that $\pi$ is a conformal map
+\begin{equation*}
+    \mathbb S^n\setminus\{S\}\subset \mathbb R^{n + 1}\to\mathbb R^n\cong\mathbb R^n\times\{0\}\subset \mathbb R^{n + 1},
+\end{equation*}
+one may wonder whether $\pi$ is the restriction of some conformal mapping on some subdomain of $\mathbb R^{n + 1}$. This is indeed the case. 
+
+::: {.corollary #restrictinversion}
+Stereographic projection $\pi:\mathbb S^n\setminus\{S\}\to \mathbb R^n$ through the south pole to the equatorial plane is the restriction of the map $T:\mathbb R^{n + 1}\setminus\{S\}\to \mathbb R^{n + 1}$ given by
+\begin{equation}
+    T(\xi)
+    = S + \frac{2(\xi - S)}{|\xi - S|^2}.
+    (\#eq:inversion)
+\end{equation}
+:::
+
+::: {.proof}
+If $|\xi| = 1$ then 
+\begin{equation*}
+    |\xi - S|^2
+    = 1 + 2\xi_{n + 1} + 1
+    = 2(1+ \xi_{n + 1}). 
+\end{equation*}
+Thus, for $i = 1, \ldots, n$, the $i^{\text{th}}$ coordinate of $T(\xi)$ is 
+\begin{equation*}
+    T(\xi)\cdot e_i
+    = \frac{2\xi_i}{2(1 + \xi_{n + 1})} 
+    = \pi(\xi)\cdot e_i. 
+\end{equation*}
+The $(n + 1)^{\text{st}}$ coordinate of $T(\xi)$ is
+\begin{equation*}
+    T(\xi)\cdot e_{n + 1}
+    = -1 + \frac{2(\xi_{n + 1} + 1)}{2(\xi_{n + 1} + 1)} 
+    = 0. 
+\end{equation*}
+The corollary is established.
+:::
+
+Note that the map $T$ in equation \@ref(eq:inversion) is a composition of conformal maps and is therefore conformal. Thus, Corollary \@ref(cor:restrictinversion) gives quick way to prove that $\pi$ is conformal. However, in contrast to the proof of Proposition \@ref(prp:conformalequiv), the proof of Corollary \@ref(cor:restrictinversion) does not provide a formula for the conformal factor that relates $(\pi^{-1})^*g_{\mathbb S^n}$ to $g_{\mathbb R^n}$. 
+
+# Volume forms and Jacobian
+
+We continue to use the notation $g = g_{\mathbb R^n}$ and $\hat g = (\pi^{-1})^*g_{\mathbb S^n}$. As is the tradition, the Riemannian volume form on $\mathbb R^n$ relative to $g$ is denoted by $\mathrm d x$ in place of the more descriptive $\mathrm d v_{g}$. Proposition \@ref(prp:conformalequiv) will allow us to quickly compute the volume form relative to $\hat g$. 
+
+::: {.lemma}
+The Riemannian volume form for $\hat g$ is given by 
+\begin{equation}
+    \mathrm d v_{\hat g} = \left(\frac 2{1 + |x|^2}\right)^n \; \mathrm d x
+\end{equation}
+:::
+
+::: {.proof}
+Proposition \@ref(prp:conformalequiv) says that 
+\begin{equation*}
+	\hat g\big|_x = \left(\frac{2}{1 + |x|^2}\right)^2 g\big|_x
+\end{equation*}
+for all $x\in \mathbb R^n$ so the volume form relative to $\hat g$ is 
+\begin{equation*}
+	\mathrm d v_{\hat g}
+	= \sqrt{\det \hat g}\; \mathrm d v_g
+	= \sqrt{\left(\frac 2{1 + |x|^2}\right)^{2n}}\; \mathrm d x
+	= \left(\frac 2{1 + |x|^2}\right)^n \; \mathrm d x. 
+\end{equation*}
+In particular, the Jacobian determinant of $\pi^{-1}$ is 
+\begin{equation*}
+	\det(J_{\pi^{-1}}(x)) = \left(\frac 2{1 + |x|^2}\right)^n. 
+\end{equation*}
+:::
+
+We can recover the Jacobian determinant of $\pi$ from that of $\pi^{-1}$ and the Inverse Function Theorem. Indeed, the Inverse Function Theorem gives
+\begin{equation}
+	\det(J_\pi(\xi)) 
+	= \frac{1}{\det(J_{\pi^{-1}}(\pi(\xi)))}
+	= \left(\frac{1 + |\pi(\xi)|^2}2\right)^n.
+	(\#eq:jacobianinverse)
+\end{equation}
+From Lemma \@ref(lem:stereographicproj) we have
+\begin{equation*}
+\begin{split}
+	1 + |\pi(\xi)|^2
+	& = 1 + \frac{1}{(1 + \xi_{n + 1})^2}\sum_{j = 1}^n \xi_j^2\\
+	& = \frac{1}{(1 + \xi_{n + 1})^2}\left(1 + 2\xi_{n + 1} + \sum_{j = 1}^{n + 1}\xi_j^2\right)\\
+	&= \frac{2(1 + \xi_{n + 1})}{(1 + \xi_{n +1})^2}\\
+	& = \frac 2{1 + \xi_{n + 1}}. 
+\end{split}
+\end{equation*}
+and hence from equation \@ref(eq:jacobianinverse), 
+\begin{equation*}
+	\det(J_\pi(\xi)) 
+	= \frac 1{(1 + \xi_{n + 1})^n}. 
+\end{equation*}

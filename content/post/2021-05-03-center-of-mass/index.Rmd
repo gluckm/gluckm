@@ -15,6 +15,7 @@ subtitle: ''
 summary: ''
 tags: []
 authors: []
+draft: True
 ---
 
 The center of mass of a collection of points $\{(x_i, y_i)\}\subset \mathbb R^2$ is $\left(\overline x, \overline y\right)$ where

@@ -15,6 +15,7 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+draft: True
 ---
 
 
@@ -32,6 +33,14 @@ summary(Orange)
 ##        Max.   :1582.0   Max.   :214.0
 ```
 
-<div class="theorem"><span class="theorem" id="thm:unnamed-chunk-2"><strong><span id="thm:unnamed-chunk-2"></span>Theorem 1  </strong></span><span class="math inline">\(a^2 + b^2 = c^2\)</span></div>
+::: {.theorem #unnamed-chunk-2}
+`\(a^2 + b^2 = c^2\)`
+:::
+
+
+```
+## Warning: The `<scale>` argument of `guides()` cannot be `FALSE`. Use "none" instead as
+## of ggplot2 3.3.4.
+```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />

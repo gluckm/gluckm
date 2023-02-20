@@ -15,6 +15,7 @@ image:
   focal_point: ''
   preview_only: no
 projects: []
+draft: True
 ---
 
 In the front matter, I should always write a few words to fill up the preview lines. Nothing technical, no equations, etc. The equations and technical content seem to have trouble rendering in the preview. 
